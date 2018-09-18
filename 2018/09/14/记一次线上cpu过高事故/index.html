@@ -108,21 +108,31 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://yoursite.com/2018/09/06/test/index.html">
-<meta property="og:site_name" content="Hexo">
+  <meta name="description" content="方法11.使用top查看CPU使用率高的pid     假如进程125697为cpu占用过高的进程 2.使用top -Hp pid 查看进程下所有线程的运行情况     假如线程125902占用cpu过高 3.使用printf ‘%x\n’ 线程ID 将线程ID转换成16进制 结果为 1ebce 4.用jstack 进程id | grep 16进制线程id 找到线程信息     5.可根据更多的j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次线上cpu过高事故">
+<meta property="og:url" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/index.html">
+<meta property="og:site_name" content="sgvshy">
+<meta property="og:description" content="方法11.使用top查看CPU使用率高的pid     假如进程125697为cpu占用过高的进程 2.使用top -Hp pid 查看进程下所有线程的运行情况     假如线程125902占用cpu过高 3.使用printf ‘%x\n’ 线程ID 将线程ID转换成16进制 结果为 1ebce 4.用jstack 进程id | grep 16进制线程id 找到线程信息     5.可根据更多的j">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-06T03:31:51.000Z">
+<meta property="og:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/tomcat_top_pid.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/125697_top_hp.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/125697_jstack_pid.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/125697_jstat_gc.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/jprofiler_1.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/jprofiler_2.png">
+<meta property="og:updated_time" content="2018-09-18T07:45:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test">
+<meta name="twitter:title" content="记一次线上cpu过高事故">
+<meta name="twitter:description" content="方法11.使用top查看CPU使用率高的pid     假如进程125697为cpu占用过高的进程 2.使用top -Hp pid 查看进程下所有线程的运行情况     假如线程125902占用cpu过高 3.使用printf ‘%x\n’ 线程ID 将线程ID转换成16进制 结果为 1ebce 4.用jstack 进程id | grep 16进制线程id 找到线程信息     5.可根据更多的j">
+<meta name="twitter:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/tomcat_top_pid.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/06/test/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/"/>
 
 
 
@@ -132,7 +142,7 @@
   };
 </script>
 
-  <title>test | Hexo</title>
+  <title>记一次线上cpu过高事故 | sgvshy</title>
   
 
 
@@ -190,7 +200,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">sgvshy</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -277,16 +287,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/06/test/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="sgvshy">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="sgvshy">
     </span>
 
     
@@ -294,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">test
+          <h1 class="post-title" itemprop="name headline">记一次线上cpu过高事故
               
             
           </h1>
@@ -319,12 +329,24 @@
                 
               
 
-              <time title="Created: 2018-09-06 11:30:46 / Modified: 11:31:51" itemprop="dateCreated datePublished" datetime="2018-09-06T11:30:46+08:00">2018-09-06</time>
+              <time title="Created: 2018-09-14 17:36:05" itemprop="dateCreated datePublished" datetime="2018-09-14T17:36:05+08:00">2018-09-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-09-18 15:45:47" itemprop="dateModified" datetime="2018-09-18T15:45:47+08:00">2018-09-18</time>
               
             
           </span>
@@ -357,7 +379,25 @@
       
 
       
-        
+        <h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>1.使用top查看CPU使用率高的pid<br>    <img src="/2018/09/14/记一次线上cpu过高事故/tomcat_top_pid.png" alt="gras"></p>
+<p>假如进程125697为cpu占用过高的进程</p>
+<p>2.使用top -Hp pid 查看进程下所有线程的运行情况<br>    <img src="/2018/09/14/记一次线上cpu过高事故/125697_top_hp.png" alt="gras"></p>
+<p>假如线程125902占用cpu过高</p>
+<p>3.使用printf ‘%x\n’ 线程ID 将线程ID转换成16进制</p>
+<pre><code>结果为 1ebce
+</code></pre><p>4.用jstack 进程id | grep 16进制线程id 找到线程信息<br>    <img src="/2018/09/14/记一次线上cpu过高事故/125697_jstack_pid.png" alt="gras"></p>
+<p>5.可根据更多的jstack信息，找到代码报错信息，定位问题原因</p>
+<hr>
+<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>1.使用jstat  -gcutil pid 查看gc情况<br>    <img src="/2018/09/14/记一次线上cpu过高事故/125697_jstat_gc.png" alt="gras"></p>
+<p>年轻代和老年代比例正常，没有full gc</p>
+<p>2.使用jmap -dump:live,file=dumpfile pid 导出dumpfile分析</p>
+<p>3.使用jhat dumpfile <br><br>执行后等待console 中输出start HTTP server on port 7000 即可使用浏览器访问 IP：7000</p>
+<p>由于我导出的dump文件太大，jhat有内存溢出的错误，使用jhat -J-Xmx4096m 指定内存也不行</p>
+<p>4.使用JProfiler分析dump文件 （dump后缀改成hprof才能被打开）<br>    <img src="/2018/09/14/记一次线上cpu过高事故/jprofiler_1.png" alt="gras"><br>    <center> 图1 </center></p>
+<p>   <img src="/2018/09/14/记一次线上cpu过高事故/jprofiler_2.png" alt="gras"> <center> 图2 </center></p>
+<p>由图1可以发现，DriverBg和LinkedList&amp;Node被实例化了很多次,<br>图2可以发现序列化的时候写入了大对象，检查代码发现有个地方业务上没有限制，导致了查询数据库时扫描了全库，全部放到了list中，并且将结果全部序列化之后放到了redis，导致redis的读写很慢！</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>  经过这次的事故，简单学习了jstat,jmap,jstack等内存分析命令，之后可以深入学习这些命令，在jvm调优中可以有更好的应用</p>
+
       
     </div>
 
@@ -384,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/06/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/09/08/spring-context/" rel="next" title="spring-context">
+                <i class="fa fa-chevron-left"></i> spring-context
               </a>
             
           </div>
@@ -437,12 +477,21 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-author-name" itemprop="name">sgvshy</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -453,7 +502,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -484,6 +533,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法1"><span class="nav-number">1.</span> <span class="nav-text">方法1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法2"><span class="nav-number">2.</span> <span class="nav-text">方法2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -501,7 +566,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">sgvshy</span>
 
   
 
