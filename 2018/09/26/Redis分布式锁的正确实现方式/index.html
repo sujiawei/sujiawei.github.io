@@ -116,7 +116,7 @@
 <meta property="og:description" content="转载  https://wudashan.cn/2017/10/23/Redis-Distributed-Lock-Implement/    前言分布式锁一般有三种实现方式：1. 数据库乐观锁；2. 基于Redis的分布式锁；3. 基于ZooKeeper的分布式锁。本篇博客将介绍第二种方式，基于Redis实现分布式锁。虽然网上已经有各种介绍Redis分布式锁实现的博客，然而他们的实现却有着各种">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/09/26/Redis分布式锁的正确实现方式/Redis分布式锁的正确实现方式_01.png">
-<meta property="og:updated_time" content="2018-09-26T06:01:05.000Z">
+<meta property="og:updated_time" content="2018-09-26T06:04:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis分布式锁的正确实现方式">
 <meta name="twitter:description" content="转载  https://wudashan.cn/2017/10/23/Redis-Distributed-Lock-Implement/    前言分布式锁一般有三种实现方式：1. 数据库乐观锁；2. 基于Redis的分布式锁；3. 基于ZooKeeper的分布式锁。本篇博客将介绍第二种方式，基于Redis实现分布式锁。虽然网上已经有各种介绍Redis分布式锁实现的博客，然而他们的实现却有着各种">
@@ -324,7 +324,7 @@
                 
               
 
-              <time title="Created: 2018-09-26 11:00:46 / Modified: 14:01:05" itemprop="dateCreated datePublished" datetime="2018-09-26T11:00:46+08:00">2018-09-26</time>
+              <time title="Created: 2018-09-26 11:00:46 / Modified: 14:04:04" itemprop="dateCreated datePublished" datetime="2018-09-26T11:00:46+08:00">2018-09-26</time>
             
 
             
@@ -414,9 +414,9 @@
 <p>如代码注释，问题在于如果调用<strong><font color="red">jedis.del()</font></strong>方法的时候，这把锁已经不属于当前客户端的时候会解除他人加的锁。那么是否真的有这种场景？答案是肯定的，比如客户端A加锁，一段时间之后客户端A解锁，在执行<strong><font color="red">jedis.del()</font></strong>之前，锁突然过期了，此时客户端B尝试加锁成功，然后客户端A再执行del()方法，则将客户端B的锁给解除了。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文主要介绍了如何使用Java代码正确实现Redis分布式锁，对于加锁和解锁也分别给出了两个比较经典的错误示例。其实想要通过Redis实现分布式锁并不难，只要保证能满足可靠性里的四个条件。互联网虽然给我们带来了方便，只要有问题就可以google，然而网上的答案一定是对的吗？其实不然，所以我们更应该时刻保持着质疑精神，多想多验证。</p>
 <p>如果你的项目中Redis是多机部署的，那么可以尝试使用<strong><font color="red">Redisson</font></strong>实现分布式锁，这是Redis官方提供的Java组件，链接在参考阅读章节已经给出。</p>
-<h1 id="参考阅读"><a href="#参考阅读" class="headerlink" title="参考阅读"></a>参考阅读</h1><p>[1] [Distributed locks with Redis] (<a href="https://redis.io/topics/distlock" target="_blank" rel="noopener">https://redis.io/topics/distlock</a>)</p>
-<p>[2] [EVAL command] (<a href="https://redis.io/commands/eval" target="_blank" rel="noopener">https://redis.io/commands/eval</a>)</p>
-<p>[3] [Redisson] (<a href="https://github.com/redisson/redisson" target="_blank" rel="noopener">https://github.com/redisson/redisson</a>)</p>
+<h1 id="参考阅读"><a href="#参考阅读" class="headerlink" title="参考阅读"></a>参考阅读</h1><p>[1] <a href="https://redis.io/topics/distlock" target="_blank" rel="noopener">Distributed locks with Redis</a></p>
+<p>[2] <a href="https://redis.io/commands/eval" target="_blank" rel="noopener">EVAL command</a></p>
+<p>[3] <a href="https://github.com/redisson/redisson" target="_blank" rel="noopener">Redisson</a></p>
 
       
     </div>
