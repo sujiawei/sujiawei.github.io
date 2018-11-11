@@ -8,13 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>sgvshy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析 转载   https://javadoop.com/post/hashmap    今天发一篇”水文”，可能很多读者都会表示不理解，不过我想把它作为并发序列文章中不可缺少的一块来介绍。本来以为花不了多少时间的，不过最终还是投入了挺多时间来完成这篇文章的。 网上关于 HashMap 和 ConcurrentHash">
+<meta property="og:type" content="article">
 <meta property="og:title" content="sgvshy">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/11/11/HashMap实现原理及源码分析/index.html">
 <meta property="og:site_name" content="sgvshy">
+<meta property="og:description" content="Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析 转载   https://javadoop.com/post/hashmap    今天发一篇”水文”，可能很多读者都会表示不理解，不过我想把它作为并发序列文章中不可缺少的一块来介绍。本来以为花不了多少时间的，不过最终还是投入了挺多时间来完成这篇文章的。 网上关于 HashMap 和 ConcurrentHash">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/11/11/HashMap实现原理及源码分析/1.png">
+<meta property="og:image" content="https://javadoop.com/blogimages/map/3.png">
+<meta property="og:image" content="https://javadoop.com/blogimages/map/2.png">
+<meta property="og:image" content="https://javadoop.com/blogimages/map/4.png">
+<meta property="og:updated_time" content="2018-11-11T06:57:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sgvshy">
+<meta name="twitter:description" content="Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析 转载   https://javadoop.com/post/hashmap    今天发一篇”水文”，可能很多读者都会表示不理解，不过我想把它作为并发序列文章中不可缺少的一块来介绍。本来以为花不了多少时间的，不过最终还是投入了挺多时间来完成这篇文章的。 网上关于 HashMap 和 ConcurrentHash">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/11/HashMap实现原理及源码分析/1.png">
   
     <link rel="alternative" href="/atom.xml" title="sgvshy" type="application/atom+xml">
   
@@ -150,9 +159,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-HashMap实现原理及源码分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-HashMap实现原理及源码分析" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
@@ -396,6 +403,27 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -403,16 +431,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/11/HashMap实现原理及源码分析/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/11/HashMap实现原理及源码分析/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/26/Redis分布式锁的正确实现方式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Redis分布式锁的正确实现方式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -427,556 +514,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Redis分布式锁的正确实现方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/26/Redis分布式锁的正确实现方式/">Redis分布式锁的正确实现方式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/26/Redis分布式锁的正确实现方式/" class="archive-article-date">
-  	<time datetime="2018-09-26T03:00:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>toc:true</p>
-<ul>
-<li><p>转载</p>
-<blockquote>
-<p><a href="http://wudashan.com/2017/10/23/Redis-Distributed-Lock-Implement/" target="_blank" rel="noopener">http://wudashan.com/2017/10/23/Redis-Distributed-Lock-Implement/</a></p>
-</blockquote>
-</li>
-</ul>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>分布式锁一般有三种实现方式：1. 数据库乐观锁；2. 基于Redis的分布式锁；3. 基于ZooKeeper的分布式锁。本篇博客将介绍第二种方式，基于Redis实现分布式锁。虽然网上已经有各种介绍Redis分布式锁实现的博客，然而他们的实现却有着各种各样的问题，为了避免误人子弟，本篇博客将详细介绍如何正确地实现Redis分布式锁</p>
-<h1 id="可靠性"><a href="#可靠性" class="headerlink" title="可靠性"></a>可靠性</h1><p>首先，为了确保分布式锁可用，我们至少要确保锁的实现同时满足以下四个条件：</p>
-<ol>
-<li>互斥性。在任意时刻，只有一个客户端能持有锁。  </li>
-<li>不会发生死锁。即使有一个客户端在持有锁的期间崩溃而没有主动解锁，也能保证后续其他客户端能加锁。  </li>
-<li>具有容错性。只要大部分的Redis节点正常运行，客户端就可以加锁和解锁。  </li>
-<li>解铃还须系铃人。加锁和解锁必须是同一个客户端，客户端自己不能把别人加的锁给解了</li>
-</ol>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><h2 id="组件依赖"><a href="#组件依赖" class="headerlink" title="组件依赖"></a>组件依赖</h2><p>首先我们要通过Maven引入Jedis开源组件，在pom.xml文件加入下面的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;redis.clients&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jedis&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.9.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="加锁代码"><a href="#加锁代码" class="headerlink" title="加锁代码"></a>加锁代码</h2><h3 id="正确姿势"><a href="#正确姿势" class="headerlink" title="正确姿势"></a>正确姿势</h3><p>Talk is cheap, show me the code。先展示代码，再带大家慢慢解释为什么这样实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class RedisTool &#123;</span><br><span class="line"></span><br><span class="line">    private static final String LOCK_SUCCESS = &quot;OK&quot;;</span><br><span class="line">    private static final String SET_IF_NOT_EXIST = &quot;NX&quot;;</span><br><span class="line">    private static final String SET_WITH_EXPIRE_TIME = &quot;PX&quot;;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 尝试获取分布式锁</span><br><span class="line">     * @param jedis Redis客户端</span><br><span class="line">     * @param lockKey 锁</span><br><span class="line">     * @param requestId 请求标识</span><br><span class="line">     * @param expireTime 超期时间</span><br><span class="line">     * @return 是否获取成功</span><br><span class="line">     */</span><br><span class="line">    public static boolean tryGetDistributedLock(Jedis jedis, String lockKey, String requestId, int expireTime) &#123;</span><br><span class="line"></span><br><span class="line">        String result = jedis.set(lockKey, requestId, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, expireTime);</span><br><span class="line"></span><br><span class="line">        if (LOCK_SUCCESS.equals(result)) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，我们加锁就一行代码：<strong><font color="red">jedis.set(String key, String value, String nxxx, String expx, int time)</font></strong>，这个set()方法一共有五个形参：</p>
-<ul>
-<li><p>第一个为key，我们使用key来当锁，因为key是唯一的。</p>
-</li>
-<li><p>第二个为value，我们传的是requestId，很多童鞋可能不明白，有key作为锁不就够了吗，为什么还要用到value？原因就是我们在上面讲到可靠性时，分布式锁要满足第四个条件解铃还须系铃人，通过给value赋值为requestId，我们就知道这把锁是哪个请求加的了，在解锁的时候就可以有依据。requestId可以使用<strong><font color="red">UUID.randomUUID().toString()</font></strong>方法生成。</p>
-</li>
-<li><p>第三个为nxxx，这个参数我们填的是NX，意思是SET IF NOT EXIST，即当key不存在时，我们进行set操作；若key已经存在，则不做任何操作；</p>
-</li>
-<li><p>第四个为expx，这个参数我们传的是PX，意思是我们要给这个key加一个过期的设置，具体时间由第五个参数决定。</p>
-</li>
-<li><p>第五个为time，与第四个参数相呼应，代表key的过期时间。</p>
-</li>
-</ul>
-<p>总的来说，执行上面的set()方法就只会导致两种结果：1. 当前没有锁（key不存在），那么就进行加锁操作，并对锁设置个有效期，同时value表示加锁的客户端。2. 已有锁存在，不做任何操作。</p>
-<p>心细的童鞋就会发现了，我们的加锁代码满足我们可靠性里描述的三个条件。首先，set()加入了NX参数，可以保证如果已有key存在，则函数不会调用成功，也就是只有一个客户端能持有锁，满足互斥性。其次，由于我们对锁设置了过期时间，即使锁的持有者后续发生崩溃而没有解锁，锁也会因为到了过期时间而自动解锁（即key被删除），不会发生死锁。最后，因为我们将value赋值为requestId，代表加锁的客户端请求标识，那么在客户端在解锁的时候就可以进行校验是否是同一个客户端。由于我们只考虑Redis单机部署的场景，所以容错性我们暂不考虑。</p>
-<h3 id="错误示例1"><a href="#错误示例1" class="headerlink" title="错误示例1"></a>错误示例1</h3><p>比较常见的错误示例就是使用<strong><font color="red">jedis.setnx()</font></strong>和<strong><font color="red">jedis.expire()</font></strong>组合实现加锁，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static void wrongGetLock1(Jedis jedis, String lockKey, String requestId, int expireTime) &#123;</span><br><span class="line"></span><br><span class="line">    Long result = jedis.setnx(lockKey, requestId);</span><br><span class="line">    if (result == 1) &#123;</span><br><span class="line">        // 若在这里程序突然崩溃，则无法设置过期时间，将发生死锁</span><br><span class="line">        jedis.expire(lockKey, expireTime);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>setnx()方法作用就是SET IF NOT EXIST，expire()方法就是给锁加一个过期时间。乍一看好像和前面的set()方法结果一样，然而由于这是两条Redis命令，不具有原子性，如果程序在执行完setnx()之后突然崩溃，导致锁没有设置过期时间。那么将会发生死锁。网上之所以有人这样实现，是因为低版本的jedis并不支持多参数的set()方法。</p>
-<h3 id="错误示例2"><a href="#错误示例2" class="headerlink" title="错误示例2"></a>错误示例2</h3><p>这一种错误示例就比较难以发现问题，而且实现也比较复杂。实现思路：使用<strong><font color="red">jedis.setnx()</font></strong>命令实现加锁，其中key是锁，value是锁的过期时间。执行过程：1. 通过setnx()方法尝试加锁，如果当前锁不存在，返回加锁成功。2. 如果锁已经存在则获取锁的过期时间，和当前时间比较，如果锁已经过期，则设置新的过期时间，返回加锁成功。代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public static boolean wrongGetLock2(Jedis jedis, String lockKey, int expireTime) &#123;</span><br><span class="line"></span><br><span class="line">    long expires = System.currentTimeMillis() + expireTime;</span><br><span class="line">    String expiresStr = String.valueOf(expires);</span><br><span class="line"></span><br><span class="line">    // 如果当前锁不存在，返回加锁成功</span><br><span class="line">    if (jedis.setnx(lockKey, expiresStr) == 1) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 如果锁存在，获取锁的过期时间</span><br><span class="line">    String currentValueStr = jedis.get(lockKey);</span><br><span class="line">    if (currentValueStr != null &amp;&amp; Long.parseLong(currentValueStr) &lt; System.currentTimeMillis()) &#123;</span><br><span class="line">        // 锁已过期，获取上一个锁的过期时间，并设置现在锁的过期时间</span><br><span class="line">        String oldValueStr = jedis.getSet(lockKey, expiresStr);</span><br><span class="line">        if (oldValueStr != null &amp;&amp; oldValueStr.equals(currentValueStr)) &#123;</span><br><span class="line">            // 考虑多线程并发的情况，只有一个线程的设置值和当前值相同，它才有权利加锁</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    // 其他情况，一律返回加锁失败</span><br><span class="line">    return false;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>那么这段代码问题在哪里？1. 由于是客户端自己生成过期时间，所以需要强制要求分布式下每个客户端的时间必须同步。 2. 当锁过期的时候，如果多个客户端同时执行<strong><font color="red">jedis.getSet()</font></strong>方法，那么虽然最终只有一个客户端可以加锁，但是这个客户端的锁的过期时间可能被其他客户端覆盖。3. 锁不具备拥有者标识，即任何客户端都可以解锁。</p>
-<h2 id="解锁代码"><a href="#解锁代码" class="headerlink" title="解锁代码"></a>解锁代码</h2><h3 id="正确姿势-1"><a href="#正确姿势-1" class="headerlink" title="正确姿势"></a>正确姿势</h3><p>还是先展示代码，再带大家慢慢解释为什么这样实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class RedisTool &#123;</span><br><span class="line"></span><br><span class="line">    private static final Long RELEASE_SUCCESS = 1L;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 释放分布式锁</span><br><span class="line">     * @param jedis Redis客户端</span><br><span class="line">     * @param lockKey 锁</span><br><span class="line">     * @param requestId 请求标识</span><br><span class="line">     * @return 是否释放成功</span><br><span class="line">     */</span><br><span class="line">    public static boolean releaseDistributedLock(Jedis jedis, String lockKey, String requestId) &#123;</span><br><span class="line"></span><br><span class="line">        String script = &quot;if redis.call(&apos;get&apos;, KEYS[1]) == ARGV[1] then return redis.call(&apos;del&apos;, KEYS[1]) else return 0 end&quot;;</span><br><span class="line">        Object result = jedis.eval(script, Collections.singletonList(lockKey), Collections.singletonList(requestId));</span><br><span class="line"></span><br><span class="line">        if (RELEASE_SUCCESS.equals(result)) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，我们解锁只需要两行代码就搞定了！第一行代码，我们写了一个简单的Lua脚本代码，上一次见到这个编程语言还是在《黑客与画家》里，没想到这次居然用上了。第二行代码，我们将Lua代码传到<strong><font color="red">jedis.eval()</font></strong>方法里，并使参数KEYS[1]赋值为lockKey，ARGV[1]赋值为requestId。eval()方法是将Lua代码交给Redis服务端执行。</p>
-<p>那么这段Lua代码的功能是什么呢？其实很简单，首先获取锁对应的value值，检查是否与requestId相等，如果相等则删除锁（解锁）。那么为什么要使用Lua语言来实现呢？因为要确保上述操作是原子性的。关于非原子性会带来什么问题，可以阅读<a href="#unlock_error2">解锁代码-错误示例2</a> 。那么为什么执行eval()方法可以确保原子性，源于Redis的特性，下面是官网对eval命令的部分解释：<br><img src="/2018/09/26/Redis分布式锁的正确实现方式/Redis分布式锁的正确实现方式_01.png" alt="grap"></p>
-<p>简单来说，就是在eval命令执行Lua代码的时候，Lua代码将被当成一个命令去执行，并且直到eval命令执行完成，Redis才会执行其他命令。</p>
-<h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><p>最常见的解锁代码就是直接使用<strong><font color="red">jedis.del()</font></strong>方法删除锁，这种不先判断锁的拥有者而直接解锁的方式，会导致任何客户端都可以随时进行解锁，即使这把锁不是它的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static void wrongReleaseLock1(Jedis jedis, String lockKey) &#123;</span><br><span class="line">    jedis.del(lockKey);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="错误示例2-1"><a href="#错误示例2-1" class="headerlink" title="错误示例2  "></a>错误示例2  <span id="unlock_error2"></span></h3><p>这种解锁代码乍一看也是没问题，甚至我之前也差点这样实现，与正确姿势差不多，唯一区别的是分成两条命令去执行，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static void wrongReleaseLock2(Jedis jedis, String lockKey, String requestId) &#123;</span><br><span class="line">        </span><br><span class="line">    // 判断加锁与解锁是不是同一个客户端</span><br><span class="line">    if (requestId.equals(jedis.get(lockKey))) &#123;</span><br><span class="line">        // 若在此时，这把锁突然不是这个客户端的，则会误解锁</span><br><span class="line">        jedis.del(lockKey);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如代码注释，问题在于如果调用<strong><font color="red">jedis.del()</font></strong>方法的时候，这把锁已经不属于当前客户端的时候会解除他人加的锁。那么是否真的有这种场景？答案是肯定的，比如客户端A加锁，一段时间之后客户端A解锁，在执行<strong><font color="red">jedis.del()</font></strong>之前，锁突然过期了，此时客户端B尝试加锁成功，然后客户端A再执行del()方法，则将客户端B的锁给解除了。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文主要介绍了如何使用Java代码正确实现Redis分布式锁，对于加锁和解锁也分别给出了两个比较经典的错误示例。其实想要通过Redis实现分布式锁并不难，只要保证能满足可靠性里的四个条件。互联网虽然给我们带来了方便，只要有问题就可以google，然而网上的答案一定是对的吗？其实不然，所以我们更应该时刻保持着质疑精神，多想多验证。</p>
-<p>如果你的项目中Redis是多机部署的，那么可以尝试使用<strong><font color="red">Redisson</font></strong>实现分布式锁，这是Redis官方提供的Java组件，链接在参考阅读章节已经给出。</p>
-<h1 id="参考阅读"><a href="#参考阅读" class="headerlink" title="参考阅读"></a>参考阅读</h1><p>[1] <a href="https://redis.io/topics/distlock" target="_blank" rel="noopener">Distributed locks with Redis</a></p>
-<p>[2] <a href="https://redis.io/commands/eval" target="_blank" rel="noopener">EVAL command</a></p>
-<p>[3] <a href="https://github.com/redisson/redisson" target="_blank" rel="noopener">Redisson</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">分布式锁</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/26/Redis分布式锁的正确实现方式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java7-8-中的-HashMap-和-ConcurrentHashMap-全解析"><span class="toc-number">1.</span> <span class="toc-text">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java7-HashMap"><span class="toc-number">1.1.</span> <span class="toc-text">Java7 HashMap </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#put-过程分析"><span class="toc-number">1.1.1.</span> <span class="toc-text">put 过程分析 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数组初始化"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">数组初始化 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算具体数组位置"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">计算具体数组位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加节点到链表中"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">添加节点到链表中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数组扩容"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">数组扩容</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-过程分析"><span class="toc-number">1.1.2.</span> <span class="toc-text">get 过程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java7-ConcurrentHashMap"><span class="toc-number">1.2.</span> <span class="toc-text">Java7 ConcurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化"><span class="toc-number">1.2.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#put-过程分析-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">put 过程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化槽-ensureSegment"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">初始化槽: ensureSegment</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取写入锁-scanAndLockForPut"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">获取写入锁: scanAndLockForPut</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩容-rehash"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">扩容: rehash</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-过程分析-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">get 过程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并发问题分析"><span class="toc-number">1.2.4.</span> <span class="toc-text">并发问题分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java8-HashMap"><span class="toc-number">1.3.</span> <span class="toc-text">Java8 HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#put-过程分析-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">put 过程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数组扩容-1"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">数组扩容</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-过程分析-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">get 过程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java8-ConcurrentHashMap"><span class="toc-number">1.4.</span> <span class="toc-text">Java8 ConcurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#put-过程分析-3"><span class="toc-number">1.4.2.</span> <span class="toc-text">put 过程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化数组：initTable"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">初始化数组：initTable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链表转红黑树-treeifyBin"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">链表转红黑树: treeifyBin</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩容：tryPresize"><span class="toc-number">1.4.3.</span> <span class="toc-text">扩容：tryPresize</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据迁移：transfer"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">数据迁移：transfer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-过程分析-3"><span class="toc-number">1.4.4.</span> <span class="toc-text">get 过程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-Spring-Aop和自定义注解的简单应用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/20/Spring-Aop和自定义注解的简单应用/">Spring-Aop和自定义注解的简单应用</a>
-    </h1>
   
 
-        
-        <a href="/2018/09/20/Spring-Aop和自定义注解的简单应用/" class="archive-article-date">
-  	<time datetime="2018-09-20T07:22:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>AOP称为面向切面编程，在程序开发中主要用来解决一些系统层面上的问题，比如日志，事务，权限等，本文记录了使用spring-aop和自定义注解实现事务处理的例子。</p>
-<p>1.自定义注解</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123; ElementType.METHOD &#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">public @interface TxManagerAnnotation &#123;</span><br><span class="line"></span><br><span class="line">    String db() default &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    int level() default Connection.TRANSACTION_REPEATABLE_READ;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.应用自定义注解的Service</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public interface UserService &#123;</span><br><span class="line"></span><br><span class="line">    User getUser(Integer id);</span><br><span class="line"></span><br><span class="line">    void setUser(User user);</span><br><span class="line"></span><br><span class="line">    void delUser(Integer id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class UserServiceImpl implements UserService &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public User getUser(Integer id) &#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;useService: getUser: &quot; + id);</span><br><span class="line">        return new User(id, &apos;xxx&apos;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    @TxManagerAnnotation 	//&lt;font color=#ca0c16&gt;应用注解,实现事务处理&lt;/font&gt;</span><br><span class="line">    public void setUser(@CheckEmpty(fields = &quot;id&quot;) User user) &#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;useService: setUser: &quot; + user.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    @TxManagerAnnotation   //&lt;font color=#ca0c16&gt;应用注解,实现事务处理&lt;/font&gt;</span><br><span class="line">    public void delUser(Integer id) &#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;useService: delUser: &quot; + id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3.事务处理类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class TxManagerUtil &#123;</span><br><span class="line"></span><br><span class="line">    private String db;</span><br><span class="line"></span><br><span class="line">    private Integer level;</span><br><span class="line"></span><br><span class="line">    public TxManagerUtil(String db, Integer level) &#123;</span><br><span class="line">        this.db = db;</span><br><span class="line">        this.level = level;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void begin() &#123;</span><br><span class="line">        System.out.println(&quot;开启事务&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void commit() &#123;</span><br><span class="line">        System.out.println(&quot;提交事务&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void rollback() &#123;</span><br><span class="line">        System.out.println(&quot;回滚事务&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void close() &#123;</span><br><span class="line">        System.out.println(&quot;关闭事务&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>4.切点处理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class TxManagerInterceptor implements MethodInterceptor &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Object invoke(MethodInvocation methodInvocation) throws Throwable &#123;</span><br><span class="line"></span><br><span class="line">        TxManagerAnnotation txManagerAnnotation = methodInvocation.getMethod().getAnnotation(TxManagerAnnotation.class);</span><br><span class="line">        String db = txManagerAnnotation.db();</span><br><span class="line">        Integer level = txManagerAnnotation.level();</span><br><span class="line">        TxManagerUtil txManagerUtil = new TxManagerUtil(db, level);</span><br><span class="line"></span><br><span class="line">        Object result = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            txManagerUtil.begin();</span><br><span class="line">            result = methodInvocation.proceed();</span><br><span class="line">            txManagerUtil.commit();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            txManagerUtil.rollback();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            txManagerUtil.close();</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>5.配置spring-aop</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:component-scan base-package=&quot;com.sujiawei.java&quot; /&gt;</span><br><span class="line">&lt;!--&lt;font color=#ca0c16&gt;切点处理&lt;/font&gt;--&gt;</span><br><span class="line">&lt;bean id=&quot;txManagerInterceptor&quot; class=&quot;com.sujiawei.java.aop.TxManagerInterceptor&quot;/&gt; </span><br><span class="line"></span><br><span class="line">&lt;aop:config proxy-target-class=&quot;true&quot;&gt;</span><br><span class="line">&lt;!--&lt;font color=#ca0c16&gt;切点作用域&lt;/font&gt;--&gt;</span><br><span class="line">&lt;aop:pointcut id=&quot;checkPointcut&quot; expression=&quot;execution(* com.sujiawei.java..*.*(..)) and @annotation(com.sujiawei.java.annotation.TxManagerAnnotation)&quot; /&gt;</span><br><span class="line">&lt;!--&lt;font color=#ca0c16&gt;切点具体处理&lt;/font&gt;--&gt;</span><br><span class="line">&lt;aop:advisor advice-ref=&quot;txManagerInterceptor&quot; pointcut-ref=&quot;checkPointcut&quot; /&gt;</span><br><span class="line">&lt;/aop:config&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>例子中使用了接口，所以proxy-target-class=”true” 该设置会使用cglib代理，spring会获取到实现类上的注解</li>
-</ul>
-<p>5.测试类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">@ContextConfiguration(&quot;classpath:aop/spring-aop-test.xml&quot;)</span><br><span class="line">public class CheckEmptyAnnoTest &#123;</span><br><span class="line"></span><br><span class="line">        @Resource</span><br><span class="line">        private UserService userService;</span><br><span class="line"></span><br><span class="line">        @Test</span><br><span class="line">        public void testCheckEmptyAnno() &#123;</span><br><span class="line">            User user = new User();</span><br><span class="line">            user.setId(1111);</span><br><span class="line">            user.setName(&quot;jsw&quot;);</span><br><span class="line">            userService.setUser(user);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>6.运行结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">开启事务</span><br><span class="line">useService: setUser: com.sujiawei.java.bean.User@7e990ed7</span><br><span class="line">提交事务</span><br><span class="line">关闭事务</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">aop 注解</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/20/Spring-Aop和自定义注解的简单应用/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-记一次线上cpu过高事故" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/14/记一次线上cpu过高事故/">记一次线上cpu过高事故</a>
-    </h1>
   
 
-        
-        <a href="/2018/09/14/记一次线上cpu过高事故/" class="archive-article-date">
-  	<time datetime="2018-09-14T09:36:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>1.使用top查看CPU使用率高的pid<br>    <img src="/2018/09/14/记一次线上cpu过高事故/tomcat_top_pid.png" alt="gras"></p>
-<p>假如进程125697为cpu占用过高的进程</p>
-<p>2.使用top -Hp pid 查看进程下所有线程的运行情况<br>    <img src="/2018/09/14/记一次线上cpu过高事故/125697_top_hp.png" alt="gras"></p>
-<p>假如线程125902占用cpu过高</p>
-<p>3.使用printf ‘%x\n’ 线程ID 将线程ID转换成16进制</p>
-<pre><code>结果为 1ebce
-</code></pre><p>4.用jstack 进程id | grep 16进制线程id 找到线程信息<br>    <img src="/2018/09/14/记一次线上cpu过高事故/125697_jstack_pid.png" alt="gras"></p>
-<p>5.可根据更多的jstack信息，找到代码报错信息，定位问题原因</p>
-<hr>
-<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>1.使用jstat  -gcutil pid 查看gc情况<br>    <img src="/2018/09/14/记一次线上cpu过高事故/125697_jstat_gc.png" alt="gras"></p>
-<p>年轻代和老年代比例正常，没有full gc</p>
-<p>2.使用jmap -dump:live,file=dumpfile pid 导出dumpfile分析</p>
-<p>3.使用jhat dumpfile <br><br>执行后等待console 中输出start HTTP server on port 7000 即可使用浏览器访问 IP：7000</p>
-<p>由于我导出的dump文件太大，jhat有内存溢出的错误，使用jhat -J-Xmx4096m 指定内存也不行</p>
-<p>4.使用JProfiler分析dump文件 （dump后缀改成hprof才能被打开）<br>    <img src="/2018/09/14/记一次线上cpu过高事故/jprofiler_1.png" alt="gras"><br>    <center> 图1 </center></p>
-<p>   <img src="/2018/09/14/记一次线上cpu过高事故/jprofiler_2.png" alt="gras"> <center> 图2 </center></p>
-<p>由图1可以发现，DriverBg和LinkedList&amp;Node被实例化了很多次,<br>图2可以发现序列化的时候写入了大对象，检查代码发现有个地方业务上没有限制，导致了查询数据库时扫描了全库，全部放到了list中，并且将结果全部序列化之后放到了redis，导致redis的读写很慢！</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>  经过这次的事故，简单学习了jstat,jmap,jstack等内存分析命令，之后可以深入学习这些命令，在jvm调优中可以有更好的应用</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/14/记一次线上cpu过高事故/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring-context" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/08/spring-context/">spring-context</a>
-    </h1>
   
 
-        
-        <a href="/2018/09/08/spring-context/" class="archive-article-date">
-  	<time datetime="2018-09-08T05:59:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、实用的Bean工厂ApplicationContext"><a href="#1、实用的Bean工厂ApplicationContext" class="headerlink" title="1、实用的Bean工厂ApplicationContext"></a>1、实用的Bean工厂ApplicationContext</h2><pre><code>ApplicationContext的中文意思是“应用前后关系”，它继承自BeanFactory接口，
-除了包含BeanFactory的所有功能之外，在国际化支持、资源访问（如URL和文件）、
-事件传播等方面进行了良好的支持
-</code></pre><h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><pre><code>在ApplicationContext接口的众多实现类中，有3个是我们经常用到的（见表1-1），并且使用这3个实现类也基本能满足我们Java EE应用开发中的绝大部分需求。
-
-表1-1 ApplicationContext接口的常用实现类介绍
-</code></pre><table>
-<thead>
-<tr>
-<th style="text-align:left">类 名 称</th>
-<th style="text-align:left">功 能 描 述 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">ClassPathXmlApplicationContext</td>
-<td style="text-align:left">从类路径ClassPath中寻找指定的XML配置文件，找到并装载完成ApplicationContext的实例化工作。例如：<br>//装载单个配置文件实例化ApplicationContext容器 <br>ApplicationContext cxt = new ClassPathXmlApplicationContext(“applicationContext.xml”); <br>//装载多个配置文件实例化ApplicationContext容器 <br>String[] configs = {“bean1.xml”,”bean2.xml”,”bean3.xml”}; <br>ApplicationContext cxt = new ClassPathXmlApplicationContext(configs);</td>
-</tr>
-<tr>
-<td style="text-align:left">FileSystemXmlApplicationContext</td>
-<td style="text-align:left">从指定的文件系统路径中寻找指定的XML配置文件，找到并装载完成ApplicationContext的实例化工作。例如： <br>//装载单个配置文件实例化ApplicationContext容器 <br>ApplicationContext cxt = new FileSystemXMLApplicationContext(“beans.xml”); <br>//装载多个配置文件实例化ApplicationContext容器 <br>String[] configs = {“c:/beans1.xml”,”c:/beans2.xml”}; <br>ApplicationContext cxt = new FileSystemXmlApplicationContext(configs);</td>
-</tr>
-<tr>
-<td style="text-align:left">XmlWebApplicationContext</td>
-<td style="text-align:left">从Web应用中寻找指定的XML配置文件，找到并装载完成ApplicationContext的实例化工作。这是为Web工程量身定制的，使用WebApplicationContextUtils类的getRequiredWebApplicationContext方法可在JSP与Servlet中取得IoC容器的引用</td>
-</tr>
-</tbody>
-</table>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ul>
-<li>ApplicationContext类图<br><img src="/2018/09/08/spring-context/ApplicationContext类图.png" alt="gras"></li>
-</ul>
-<hr>
-<ul>
-<li><p>分析：<br><br>  1.ClassPathXmlApplicationContext</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	public ClassPathXmlApplicationContext(</span><br><span class="line">	String[] configLocations, boolean refresh, @Nullable ApplicationContext parent) throws BeansException &#123;</span><br><span class="line"></span><br><span class="line">	super(parent);</span><br><span class="line">	setConfigLocations(configLocations);</span><br><span class="line">	if (refresh) &#123;</span><br><span class="line">		refresh();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<pre><code>* 首先调用setConfigLocations(configLocations)方法&lt;br&gt;
-setConfigLocations为AbstractRefreshableConfigApplicationContext中的方法，设置configLocations，将要解析的xml文件名进去
-
-* 重点在refresh()中，refresh()在AbstractApplicationContext类中，所有解析xml文件和装配bean的动作都发生在这里&lt;br&gt;
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">public void refresh() throws BeansException, IllegalStateException &#123;</span><br><span class="line">	synchronized (this.startupShutdownMonitor) &#123;</span><br><span class="line">		// Prepare this context for refreshing.</span><br><span class="line">		prepareRefresh();</span><br><span class="line"></span><br><span class="line">		// Tell the subclass to refresh the internal bean factory.</span><br><span class="line">		ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();</span><br><span class="line"></span><br><span class="line">		// Prepare the bean factory for use in this context.</span><br><span class="line">		prepareBeanFactory(beanFactory);</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			// Allows post-processing of the bean factory in context subclasses.</span><br><span class="line">			postProcessBeanFactory(beanFactory);</span><br><span class="line"></span><br><span class="line">			// Invoke factory processors registered as beans in the context.</span><br><span class="line">			invokeBeanFactoryPostProcessors(beanFactory);</span><br><span class="line"></span><br><span class="line">			// Register bean processors that intercept bean creation.</span><br><span class="line">			registerBeanPostProcessors(beanFactory);</span><br><span class="line"></span><br><span class="line">			// Initialize message source for this context.</span><br><span class="line">			initMessageSource();</span><br><span class="line"></span><br><span class="line">			// Initialize event multicaster for this context.</span><br><span class="line">			initApplicationEventMulticaster();</span><br><span class="line"></span><br><span class="line">			// Initialize other special beans in specific context subclasses.</span><br><span class="line">			onRefresh();</span><br><span class="line"></span><br><span class="line">			// Check for listener beans and register them.</span><br><span class="line">			registerListeners();</span><br><span class="line"></span><br><span class="line">			// Instantiate all remaining (non-lazy-init) singletons.</span><br><span class="line">			finishBeanFactoryInitialization(beanFactory);</span><br><span class="line"></span><br><span class="line">			// Last step: publish corresponding event.</span><br><span class="line">			finishRefresh();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		catch (BeansException ex) &#123;</span><br><span class="line">			if (logger.isWarnEnabled()) &#123;</span><br><span class="line">				logger.warn(&quot;Exception encountered during context initialization - &quot; +</span><br><span class="line">						&quot;cancelling refresh attempt: &quot; + ex);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			// Destroy already created singletons to avoid dangling resources.</span><br><span class="line">			destroyBeans();</span><br><span class="line"></span><br><span class="line">			// Reset &apos;active&apos; flag.</span><br><span class="line">			cancelRefresh(ex);</span><br><span class="line"></span><br><span class="line">			// Propagate exception to caller.</span><br><span class="line">			throw ex;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		finally &#123;</span><br><span class="line">			// Reset common introspection caches in Spring&apos;s core, since we</span><br><span class="line">			// might not ever need metadata for singleton beans anymore...</span><br><span class="line">			resetCommonCaches();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/08/spring-context/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring-ioc" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/08/spring-ioc/">spring-ioc</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/08/spring-ioc/" class="archive-article-date">
-  	<time datetime="2018-09-08T05:32:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/08/spring-ioc/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/06/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/06/hello-world/" class="archive-article-date">
-  	<time datetime="2018-09-06T02:18:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/06/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -1011,8 +574,8 @@ setConfigLocations为AbstractRefreshableConfigApplicationContext中的方法，�
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
