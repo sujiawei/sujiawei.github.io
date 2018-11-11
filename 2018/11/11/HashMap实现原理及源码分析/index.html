@@ -6,23 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>sgvshy</title>
+  <title>Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析 | sgvshy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析 转载   https://javadoop.com/post/hashmap    今天发一篇”水文”，可能很多读者都会表示不理解，不过我想把它作为并发序列文章中不可缺少的一块来介绍。本来以为花不了多少时间的，不过最终还是投入了挺多时间来完成这篇文章的。 网上关于 HashMap 和 ConcurrentHash">
+  <meta name="description" content="转载   https://javadoop.com/post/hashmap    今天发一篇”水文”，可能很多读者都会表示不理解，不过我想把它作为并发序列文章中不可缺少的一块来介绍。本来以为花不了多少时间的，不过最终还是投入了挺多时间来完成这篇文章的。 网上关于 HashMap 和 ConcurrentHashMap 的文章确实不少，不过缺斤少两的文章比较多，所以才想自己也写一篇，把细节说清楚">
+<meta name="keywords" content="HashMap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sgvshy">
+<meta property="og:title" content="Java7&#x2F;8 中的 HashMap 和 ConcurrentHashMap 全解析">
 <meta property="og:url" content="http://yoursite.com/2018/11/11/HashMap实现原理及源码分析/index.html">
 <meta property="og:site_name" content="sgvshy">
-<meta property="og:description" content="Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析 转载   https://javadoop.com/post/hashmap    今天发一篇”水文”，可能很多读者都会表示不理解，不过我想把它作为并发序列文章中不可缺少的一块来介绍。本来以为花不了多少时间的，不过最终还是投入了挺多时间来完成这篇文章的。 网上关于 HashMap 和 ConcurrentHash">
+<meta property="og:description" content="转载   https://javadoop.com/post/hashmap    今天发一篇”水文”，可能很多读者都会表示不理解，不过我想把它作为并发序列文章中不可缺少的一块来介绍。本来以为花不了多少时间的，不过最终还是投入了挺多时间来完成这篇文章的。 网上关于 HashMap 和 ConcurrentHashMap 的文章确实不少，不过缺斤少两的文章比较多，所以才想自己也写一篇，把细节说清楚">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/11/11/HashMap实现原理及源码分析/1.png">
 <meta property="og:image" content="https://javadoop.com/blogimages/map/3.png">
 <meta property="og:image" content="https://javadoop.com/blogimages/map/2.png">
 <meta property="og:image" content="https://javadoop.com/blogimages/map/4.png">
-<meta property="og:updated_time" content="2018-11-11T06:57:16.000Z">
+<meta property="og:updated_time" content="2018-11-11T07:50:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sgvshy">
-<meta name="twitter:description" content="Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析 转载   https://javadoop.com/post/hashmap    今天发一篇”水文”，可能很多读者都会表示不理解，不过我想把它作为并发序列文章中不可缺少的一块来介绍。本来以为花不了多少时间的，不过最终还是投入了挺多时间来完成这篇文章的。 网上关于 HashMap 和 ConcurrentHash">
+<meta name="twitter:title" content="Java7&#x2F;8 中的 HashMap 和 ConcurrentHashMap 全解析">
+<meta name="twitter:description" content="转载   https://javadoop.com/post/hashmap    今天发一篇”水文”，可能很多读者都会表示不理解，不过我想把它作为并发序列文章中不可缺少的一块来介绍。本来以为花不了多少时间的，不过最终还是投入了挺多时间来完成这篇文章的。 网上关于 HashMap 和 ConcurrentHashMap 的文章确实不少，不过缺斤少两的文章比较多，所以才想自己也写一篇，把细节说清楚">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/11/HashMap实现原理及源码分析/1.png">
   
     <link rel="alternative" href="/atom.xml" title="sgvshy" type="application/atom+xml">
@@ -52,7 +53,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="layout/img/photo.jpeg" class="js-avatar">
+			<img src="../../source/photo.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">sgvshy</a></h1>
@@ -110,7 +111,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="layout/img/photo.jpeg" class="js-avatar">
+				<img src="../../source/photo.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">sgvshy</h1>
@@ -162,9 +163,24 @@
             <article id="post-HashMap实现原理及源码分析" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析
+    </h1>
+  
+
+        
+        <a href="/2018/11/11/HashMap实现原理及源码分析/" class="archive-article-date">
+  	<time datetime="2018-11-11T03:00:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-11</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Java7-8-中的-HashMap-和-ConcurrentHashMap-全解析"><a href="#Java7-8-中的-HashMap-和-ConcurrentHashMap-全解析" class="headerlink" title="Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析"></a>Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</h1><ul>
+        <ul>
 <li><p>转载 </p>
 <blockquote>
 <p><a href="https://javadoop.com/post/hashmap#put%20%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90" target="_blank" rel="noopener">https://javadoop.com/post/hashmap</a></p>
@@ -175,54 +191,7 @@
 <p>网上关于 HashMap 和 ConcurrentHashMap 的文章确实不少，不过缺斤少两的文章比较多，所以才想自己也写一篇，把细节说清楚说透，尤其像 Java8 中的 ConcurrentHashMap，大部分文章都说不清楚。终归是希望能降低大家学习的成本，不希望大家到处找各种不是很靠谱的文章，看完一篇又一篇，可是还是模模糊糊。</p>
 <p>阅读建议：四节基本上可以进行独立阅读，建议初学者可按照 Java7 HashMap -&gt; Java7 ConcurrentHashMap -&gt; Java8 HashMap -&gt; Java8 ConcurrentHashMap 顺序进行阅读，可适当降低阅读门槛。</p>
 <p>阅读前提：本文分析的是源码，所以至少读者要熟悉它们的接口使用，同时，对于并发，读者至少要知道 CAS、ReentrantLock、UNSAFE 操作这几个基本的知识，文中不会对这些知识进行介绍。Java8 用到了红黑树，不过本文不会进行展开，感兴趣的读者请自行查找相关资料。</p>
-<ul>
-<li><a href="#Java7_HashMap">Java7 HashMap</a><ul>
-<li><a href="#Java7_put_过程分析">put 过程分析</a><ul>
-<li><a href="#Java7_数组初始化">数组初始化</a></li>
-<li><a href="https://javadoop.com/post/hashmap#%E8%AE%A1%E7%AE%97%E5%85%B7%E4%BD%93%E6%95%B0%E7%BB%84%E4%BD%8D%E7%BD%AE" target="_blank" rel="noopener">计算具体数组位置</a></li>
-<li><a href="https://javadoop.com/post/hashmap#%E6%B7%BB%E5%8A%A0%E8%8A%82%E7%82%B9%E5%88%B0%E9%93%BE%E8%A1%A8%E4%B8%AD" target="_blank" rel="noopener">添加节点到链表中</a></li>
-<li><a href="https://javadoop.com/post/hashmap#%E6%95%B0%E7%BB%84%E6%89%A9%E5%AE%B9" target="_blank" rel="noopener">数组扩容</a></li>
-</ul>
-</li>
-<li><a href="https://javadoop.com/post/hashmap#get%20%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90" target="_blank" rel="noopener">get 过程分析</a></li>
-</ul>
-</li>
-<li>Java7 ConcurrentHashMap<ul>
-<li><a href="https://javadoop.com/post/hashmap#%E5%88%9D%E5%A7%8B%E5%8C%96" target="_blank" rel="noopener">初始化</a></li>
-<li>put 过程分析<ul>
-<li><a href="https://javadoop.com/post/hashmap#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%A7%BD%3A%20ensureSegment" target="_blank" rel="noopener">初始化槽: ensureSegment</a></li>
-<li><a href="https://javadoop.com/post/hashmap#%E8%8E%B7%E5%8F%96%E5%86%99%E5%85%A5%E9%94%81%3A%20scanAndLockForPut" target="_blank" rel="noopener">获取写入锁: scanAndLockForPut</a></li>
-<li><a href="https://javadoop.com/post/hashmap#%E6%89%A9%E5%AE%B9%3A%20rehash" target="_blank" rel="noopener">扩容: rehash</a></li>
-</ul>
-</li>
-<li><a href="https://javadoop.com/post/hashmap#get%20%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90" target="_blank" rel="noopener">get 过程分析</a></li>
-<li><a href="https://javadoop.com/post/hashmap#%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90" target="_blank" rel="noopener">并发问题分析</a></li>
-</ul>
-</li>
-<li>Java8 HashMap<ul>
-<li>put 过程分析<ul>
-<li><a href="https://javadoop.com/post/hashmap#%E6%95%B0%E7%BB%84%E6%89%A9%E5%AE%B9" target="_blank" rel="noopener">数组扩容</a></li>
-</ul>
-</li>
-<li><a href="https://javadoop.com/post/hashmap#get%20%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90" target="_blank" rel="noopener">get 过程分析</a></li>
-</ul>
-</li>
-<li>Java8 ConcurrentHashMap<ul>
-<li><a href="https://javadoop.com/post/hashmap#%E5%88%9D%E5%A7%8B%E5%8C%96" target="_blank" rel="noopener">初始化</a></li>
-<li>put 过程分析<ul>
-<li><a href="https://javadoop.com/post/hashmap#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E7%BB%84%EF%BC%9AinitTable" target="_blank" rel="noopener">初始化数组：initTable</a></li>
-<li><a href="https://javadoop.com/post/hashmap#%E9%93%BE%E8%A1%A8%E8%BD%AC%E7%BA%A2%E9%BB%91%E6%A0%91%3A%20treeifyBin" target="_blank" rel="noopener">链表转红黑树: treeifyBin</a></li>
-</ul>
-</li>
-<li>扩容：tryPresize<ul>
-<li><a href="https://javadoop.com/post/hashmap#%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB%EF%BC%9Atransfer" target="_blank" rel="noopener">数据迁移：transfer</a></li>
-</ul>
-</li>
-<li><a href="https://javadoop.com/post/hashmap#get%20%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90" target="_blank" rel="noopener">get 过程分析</a></li>
-</ul>
-</li>
-<li><a href="https://javadoop.com/post/hashmap#%E6%80%BB%E7%BB%93" target="_blank" rel="noopener">总结</a></li>
-</ul>
+<a id="more"></a>
 <h2 id="Java7-HashMap"><a href="#Java7-HashMap" class="headerlink" title="Java7 HashMap "></a>Java7 HashMap <span id="Java7_HashMap"></span></h2><p>HashMap 是最简单的，一来我们非常熟悉，二来就是它不支持并发操作，所以源码也非常简单。</p>
 <p>首先，我们用下面这张图来介绍 HashMap 的结构。</p>
 <p><img src="/2018/11/11/HashMap实现原理及源码分析/1.png" alt="1"></p>
@@ -428,6 +397,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">HashMap</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -521,7 +501,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java7-8-中的-HashMap-和-ConcurrentHashMap-全解析"><span class="toc-number">1.</span> <span class="toc-text">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java7-HashMap"><span class="toc-number">1.1.</span> <span class="toc-text">Java7 HashMap </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#put-过程分析"><span class="toc-number">1.1.1.</span> <span class="toc-text">put 过程分析 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数组初始化"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">数组初始化 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算具体数组位置"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">计算具体数组位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加节点到链表中"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">添加节点到链表中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数组扩容"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">数组扩容</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-过程分析"><span class="toc-number">1.1.2.</span> <span class="toc-text">get 过程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java7-ConcurrentHashMap"><span class="toc-number">1.2.</span> <span class="toc-text">Java7 ConcurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化"><span class="toc-number">1.2.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#put-过程分析-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">put 过程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化槽-ensureSegment"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">初始化槽: ensureSegment</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取写入锁-scanAndLockForPut"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">获取写入锁: scanAndLockForPut</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩容-rehash"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">扩容: rehash</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-过程分析-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">get 过程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并发问题分析"><span class="toc-number">1.2.4.</span> <span class="toc-text">并发问题分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java8-HashMap"><span class="toc-number">1.3.</span> <span class="toc-text">Java8 HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#put-过程分析-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">put 过程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数组扩容-1"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">数组扩容</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-过程分析-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">get 过程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java8-ConcurrentHashMap"><span class="toc-number">1.4.</span> <span class="toc-text">Java8 ConcurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#put-过程分析-3"><span class="toc-number">1.4.2.</span> <span class="toc-text">put 过程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化数组：initTable"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">初始化数组：initTable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链表转红黑树-treeifyBin"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">链表转红黑树: treeifyBin</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩容：tryPresize"><span class="toc-number">1.4.3.</span> <span class="toc-text">扩容：tryPresize</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据迁移：transfer"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">数据迁移：transfer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-过程分析-3"><span class="toc-number">1.4.4.</span> <span class="toc-text">get 过程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java7-HashMap"><span class="toc-number">1.</span> <span class="toc-text">Java7 HashMap </span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#put-过程分析"><span class="toc-number">1.1.</span> <span class="toc-text">put 过程分析 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数组初始化"><span class="toc-number">1.1.1.</span> <span class="toc-text">数组初始化 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算具体数组位置"><span class="toc-number">1.1.2.</span> <span class="toc-text">计算具体数组位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加节点到链表中"><span class="toc-number">1.1.3.</span> <span class="toc-text">添加节点到链表中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数组扩容"><span class="toc-number">1.1.4.</span> <span class="toc-text">数组扩容</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-过程分析"><span class="toc-number">1.2.</span> <span class="toc-text">get 过程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java7-ConcurrentHashMap"><span class="toc-number">2.</span> <span class="toc-text">Java7 ConcurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化"><span class="toc-number">2.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#put-过程分析-1"><span class="toc-number">2.2.</span> <span class="toc-text">put 过程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化槽-ensureSegment"><span class="toc-number">2.2.1.</span> <span class="toc-text">初始化槽: ensureSegment</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取写入锁-scanAndLockForPut"><span class="toc-number">2.2.2.</span> <span class="toc-text">获取写入锁: scanAndLockForPut</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩容-rehash"><span class="toc-number">2.2.3.</span> <span class="toc-text">扩容: rehash</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-过程分析-1"><span class="toc-number">2.3.</span> <span class="toc-text">get 过程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并发问题分析"><span class="toc-number">2.4.</span> <span class="toc-text">并发问题分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java8-HashMap"><span class="toc-number">3.</span> <span class="toc-text">Java8 HashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#put-过程分析-2"><span class="toc-number">3.1.</span> <span class="toc-text">put 过程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数组扩容-1"><span class="toc-number">3.1.1.</span> <span class="toc-text">数组扩容</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-过程分析-2"><span class="toc-number">3.2.</span> <span class="toc-text">get 过程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java8-ConcurrentHashMap"><span class="toc-number">4.</span> <span class="toc-text">Java8 ConcurrentHashMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化-1"><span class="toc-number">4.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#put-过程分析-3"><span class="toc-number">4.2.</span> <span class="toc-text">put 过程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化数组：initTable"><span class="toc-number">4.2.1.</span> <span class="toc-text">初始化数组：initTable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#链表转红黑树-treeifyBin"><span class="toc-number">4.2.2.</span> <span class="toc-text">链表转红黑树: treeifyBin</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩容：tryPresize"><span class="toc-number">4.3.</span> <span class="toc-text">扩容：tryPresize</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据迁移：transfer"><span class="toc-number">4.3.1.</span> <span class="toc-text">数据迁移：transfer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-过程分析-3"><span class="toc-number">4.4.</span> <span class="toc-text">get 过程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -654,6 +634,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
               </li>
             
             <div class="clearfix"></div>
