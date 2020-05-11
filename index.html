@@ -12,9 +12,8 @@
 <meta property="og:title" content="sgvshy">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="sgvshy">
-<meta property="og:locale" content="default">
+<meta property="article:author" content="sgvshy">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sgvshy">
   
     <link rel="alternative" href="/atom.xml" title="sgvshy" type="application/atom+xml">
   
@@ -32,7 +31,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -56,6 +55,8 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/tags">随笔</a></li>
+	        
+				<li><a href="/java_class_every_day">每天一个JAVA类</a></li>
 	        
 			</ul>
 		</nav>
@@ -113,6 +114,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -130,12 +133,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags">随笔</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/java_class_every_day">每天一个JAVA类</a></li>
 		        
 				</ul>
 			</nav>
@@ -152,6 +157,167 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-高并发之CountDownLatch" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/10/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8BCountDownLatch/">高并发之CountDownLatch</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/10/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8BCountDownLatch/" class="archive-article-date">
+  	<time datetime="2019-05-10T09:01:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>CountDownLatch是一个通用的同步工具，CountDownLatch允许一个或多个线程在其他线程执行操作完成前等待。</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>CountDownLatch需要初始化一个计数器，调用await()方法使线程阻塞，调用countDown()方法让计数器减一，当计数器减为零时，所有等待的线程释放，并且后续await()的线程立即执行。</p>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>使用CountDownLatch主要有两个场景</p>
+        
+          <a class="article-more-a" href="/2019/05/10/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8BCountDownLatch/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-- 高并发 -- CountDownLatch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/10/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8BCountDownLatch/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ConcurrentHashMap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/11/ConcurrentHashMap/">ConcurrentHashMap 源码解析</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/11/ConcurrentHashMap/" class="archive-article-date">
+  	<time datetime="2019-02-11T03:00:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="put操作"><a href="#put操作" class="headerlink" title="put操作"></a>put操作</h2><ul>
+<li>put()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(K key, V value, <span class="keyword">boolean</span> onlyIfAbsent)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (key == <span class="keyword">null</span> || value == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="keyword">int</span> hash = spread(key.hashCode());  <span class="comment">//hash (h ^ (h &gt;&gt;&gt; 16)) &amp; HASH_BITS;减少hash冲突，保证均匀分布</span></span><br><span class="line">    <span class="keyword">int</span> binCount = <span class="number">0</span>; 	<span class="comment">//统计节点长度</span></span><br><span class="line">    <span class="keyword">for</span> (Node&lt;K,V&gt;[] tab = table;;) &#123;   <span class="comment">//CAS自旋</span></span><br><span class="line">        Node&lt;K,V&gt; f; <span class="keyword">int</span> n, i, fh;</span><br><span class="line">        <span class="keyword">if</span> (tab == <span class="keyword">null</span> || (n = tab.length) == <span class="number">0</span>)  <span class="comment">//数组为空，则初始化</span></span><br><span class="line">            tab = initTable();</span><br><span class="line">        <span class="comment">//(n - 1) &amp; hash 取模运算得到元素的位置，tabAt利用Unsafe类得到当前元素是否有数据</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((f = tabAt(tab, i = (n - <span class="number">1</span>) &amp; hash)) == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">//如果没有，利用CAS新增数据</span></span><br><span class="line">            <span class="keyword">if</span> (casTabAt(tab, i, <span class="keyword">null</span>,</span><br><span class="line">                         <span class="keyword">new</span> Node&lt;K,V&gt;(hash, key, value, <span class="keyword">null</span>)))</span><br><span class="line">                <span class="keyword">break</span>;                   <span class="comment">// no lock when adding to empty bin</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ((fh = f.hash) == MOVED)</span><br><span class="line">            tab = helpTransfer(tab, f);</span><br><span class="line">        <span class="keyword">else</span> &#123; <span class="comment">// f != null 即数组当前节点有值</span></span><br><span class="line">            V oldVal = <span class="keyword">null</span>;</span><br><span class="line">            <span class="comment">//synchronized 加锁 使锁的力度细化到数组当前节点</span></span><br><span class="line">            <span class="keyword">synchronized</span> (f) &#123;</span><br><span class="line">                <span class="keyword">if</span> (tabAt(tab, i) == f) &#123;  <span class="comment">//已经加锁，为什么还要判断？</span></span><br><span class="line">                    <span class="keyword">if</span> (fh &gt;= <span class="number">0</span>) &#123;   <span class="comment">//fh = f.hash</span></span><br><span class="line">                        binCount = <span class="number">1</span>;</span><br><span class="line">                        <span class="comment">//处理链表</span></span><br><span class="line">                        <span class="keyword">for</span> (Node&lt;K,V&gt; e = f;; ++binCount) &#123;</span><br><span class="line">                            K ek;</span><br><span class="line">                            <span class="comment">//put数组与当前节点数据相同 则根据onlyIfAbsent判断覆盖</span></span><br><span class="line">                            <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                                ((ek = e.key) == key ||</span><br><span class="line">                                 (ek != <span class="keyword">null</span> &amp;&amp; key.equals(ek)))) &#123;</span><br><span class="line">                                oldVal = e.val;</span><br><span class="line">                                <span class="keyword">if</span> (!onlyIfAbsent) <span class="comment">//覆盖</span></span><br><span class="line">                                    e.val = value;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                            Node&lt;K,V&gt; pred = e;</span><br><span class="line">                            <span class="keyword">if</span> ((e = e.next) == <span class="keyword">null</span>) &#123;</span><br><span class="line">                                pred.next = <span class="keyword">new</span> Node&lt;K,V&gt;(hash, key,</span><br><span class="line">                                                          value, <span class="keyword">null</span>);</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//f是红黑树节点</span></span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (f <span class="keyword">instanceof</span> TreeBin) &#123;</span><br><span class="line">                        Node&lt;K,V&gt; p;</span><br><span class="line">                        binCount = <span class="number">2</span>;</span><br><span class="line">                        <span class="keyword">if</span> ((p = ((TreeBin&lt;K,V&gt;)f).putTreeVal(hash, key,</span><br><span class="line">                                                       value)) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                            oldVal = p.val;</span><br><span class="line">                            <span class="keyword">if</span> (!onlyIfAbsent)</span><br><span class="line">                                p.val = value;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (binCount != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">//节点长度 &gt;= 8， 转红黑树</span></span><br><span class="line">                <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD)</span><br><span class="line">                    treeifyBin(tab, i);</span><br><span class="line">                <span class="keyword">if</span> (oldVal != <span class="keyword">null</span>)</span><br><span class="line">                    <span class="keyword">return</span> oldVal;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    addCount(<span class="number">1L</span>, binCount);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2019/02/11/ConcurrentHashMap/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">HashMap</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ConcurrentHashMap</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/11/ConcurrentHashMap/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-HashMap实现原理及源码分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -159,12 +325,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/11/HashMap实现原理及源码分析/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a>
+      <a class="article-title" href="/2018/11/11/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a>
     </h1>
   
 
         
-        <a href="/2018/11/11/HashMap实现原理及源码分析/" class="archive-article-date">
+        <a href="/2018/11/11/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="archive-article-date">
   	<time datetime="2018-11-11T03:00:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-11</time>
 </a>
         
@@ -184,7 +350,7 @@
 <p>阅读建议：四节基本上可以进行独立阅读，建议初学者可按照 Java7 HashMap -&gt; Java7 ConcurrentHashMap -&gt; Java8 HashMap -&gt; Java8 ConcurrentHashMap 顺序进行阅读，可适当降低阅读门槛。</p>
 <p>阅读前提：本文分析的是源码，所以至少读者要熟悉它们的接口使用，同时，对于并发，读者至少要知道 CAS、ReentrantLock、UNSAFE 操作这几个基本的知识，文中不会对这些知识进行介绍。Java8 用到了红黑树，不过本文不会进行展开，感兴趣的读者请自行查找相关资料。</p>
         
-          <a class="article-more-a" href="/2018/11/11/HashMap实现原理及源码分析/#more">more >></a>
+          <a class="article-more-a" href="/2018/11/11/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#more">more >></a>
         
       
 
@@ -208,7 +374,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/11/HashMap实现原理及源码分析/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/11/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">展开全文 >></a>
         </p>
       
 
@@ -245,12 +411,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/26/Redis分布式锁的正确实现方式/">Redis分布式锁的正确实现方式</a>
+      <a class="article-title" href="/2018/09/26/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/">Redis分布式锁的正确实现方式</a>
     </h1>
   
 
         
-        <a href="/2018/09/26/Redis分布式锁的正确实现方式/" class="archive-article-date">
+        <a href="/2018/09/26/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/" class="archive-article-date">
   	<time datetime="2018-09-26T03:00:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-26</time>
 </a>
         
@@ -274,7 +440,7 @@
 <li>解铃还须系铃人。加锁和解锁必须是同一个客户端，客户端自己不能把别人加的锁给解了</li>
 </ol>
         
-          <a class="article-more-a" href="/2018/09/26/Redis分布式锁的正确实现方式/#more">more >></a>
+          <a class="article-more-a" href="/2018/09/26/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/#more">more >></a>
         
       
 
@@ -302,7 +468,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/26/Redis分布式锁的正确实现方式/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/09/26/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/">展开全文 >></a>
         </p>
       
 
@@ -339,12 +505,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/20/Spring-Aop和自定义注解的简单应用/">Spring-Aop和自定义注解的简单应用</a>
+      <a class="article-title" href="/2018/09/20/Spring-Aop%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/">Spring-Aop和自定义注解的简单应用</a>
     </h1>
   
 
         
-        <a href="/2018/09/20/Spring-Aop和自定义注解的简单应用/" class="archive-article-date">
+        <a href="/2018/09/20/Spring-Aop%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/" class="archive-article-date">
   	<time datetime="2018-09-20T07:22:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-20</time>
 </a>
         
@@ -355,23 +521,9 @@
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>AOP称为面向切面编程，在程序开发中主要用来解决一些系统层面上的问题，比如日志，事务，权限等，本文记录了使用spring-aop和自定义注解实现事务处理的例子。</p>
 <p>1.自定义注解</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123; ElementType.METHOD &#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> TxManagerAnnotation &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">db</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">level</span><span class="params">()</span> <span class="keyword">default</span> Connection.TRANSACTION_REPEATABLE_READ</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.应用自定义注解的Service</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">User <span class="title">getUser</span><span class="params">(Integer id)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setUser</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">delUser</span><span class="params">(Integer id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"useService: getUser: "</span> + id);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User(id, <span class="string">'xxx'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="meta">@TxManagerAnnotation</span> 	<span class="comment">//&lt;font color=#ca0c16&gt;应用注解,实现事务处理&lt;/font&gt;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUser</span><span class="params">(@CheckEmpty(fields = <span class="string">"id"</span>)</span> User user) </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"useService: setUser: "</span> + user.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="meta">@TxManagerAnnotation</span>   <span class="comment">//&lt;font color=#ca0c16&gt;应用注解,实现事务处理&lt;/font&gt;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delUser</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"useService: delUser: "</span> + id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3.事务处理类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TxManagerUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String db;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer level;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TxManagerUtil</span><span class="params">(String db, Integer level)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.db = db;</span><br><span class="line">        <span class="keyword">this</span>.level = level;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">begin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"开启事务"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">commit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"提交事务"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rollback</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"回滚事务"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"关闭事务"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>4.切点处理</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TxManagerInterceptor</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(MethodInvocation methodInvocation)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line"></span><br><span class="line">        TxManagerAnnotation txManagerAnnotation = methodInvocation.getMethod().getAnnotation(TxManagerAnnotation.class);</span><br><span class="line">        String db = txManagerAnnotation.db();</span><br><span class="line">        Integer level = txManagerAnnotation.level();</span><br><span class="line">        TxManagerUtil txManagerUtil = <span class="keyword">new</span> TxManagerUtil(db, level);</span><br><span class="line"></span><br><span class="line">        Object result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            txManagerUtil.begin();</span><br><span class="line">            result = methodInvocation.proceed();</span><br><span class="line">            txManagerUtil.commit();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            txManagerUtil.rollback();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            txManagerUtil.close();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>5.配置spring-aop</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:component-scan base-<span class="keyword">package</span>=<span class="string">"com.sujiawei.java"</span> /&gt;</span><br><span class="line">&lt;!--&lt;font color=#ca0c16&gt;切点处理&lt;/font&gt;--&gt;</span><br><span class="line">&lt;bean id=<span class="string">"txManagerInterceptor"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"com.sujiawei.java.aop.TxManagerInterceptor"</span>/&gt; </span><br><span class="line"></span><br><span class="line">&lt;aop:config proxy-target-<span class="class"><span class="keyword">class</span></span>=<span class="string">"true"</span>&gt;</span><br><span class="line">&lt;!--&lt;font color=#ca0c16&gt;切点作用域&lt;/font&gt;--&gt;</span><br><span class="line">&lt;aop:pointcut id=<span class="string">"checkPointcut"</span> expression=<span class="string">"execution(* com.sujiawei.java..*.*(..)) and @annotation(com.sujiawei.java.annotation.TxManagerAnnotation)"</span> /&gt;</span><br><span class="line">&lt;!--&lt;font color=#ca0c16&gt;切点具体处理&lt;/font&gt;--&gt;</span><br><span class="line">&lt;aop:advisor advice-ref=<span class="string">"txManagerInterceptor"</span> pointcut-ref=<span class="string">"checkPointcut"</span> /&gt;</span><br><span class="line">&lt;/aop:config&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>例子中使用了接口，所以proxy-target-class=”true” 该设置会使用cglib代理，spring会获取到实现类上的注解</li>
-</ul>
-<p>5.测试类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</span><br><span class="line"><span class="meta">@ContextConfiguration</span>(<span class="string">"classpath:aop/spring-aop-test.xml"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheckEmptyAnnoTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Resource</span></span><br><span class="line">        <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Test</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCheckEmptyAnno</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            User user = <span class="keyword">new</span> User();</span><br><span class="line">            user.setId(<span class="number">1111</span>);</span><br><span class="line">            user.setName(<span class="string">"jsw"</span>);</span><br><span class="line">            userService.setUser(user);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>6.运行结果</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">开启事务</span><br><span class="line">useService: setUser: com.sujiawei.java.bean.User@<span class="number">7e990</span>ed7</span><br><span class="line">提交事务</span><br><span class="line">关闭事务</span><br></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/2018/09/20/Spring-Aop%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/#more">more >></a>
+        
       
 
       
@@ -394,7 +546,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/20/Spring-Aop和自定义注解的简单应用/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/09/20/Spring-Aop%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/">展开全文 >></a>
         </p>
       
 
@@ -431,12 +583,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/14/记一次线上cpu过高事故/">记一次线上cpu过高事故</a>
+      <a class="article-title" href="/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/">记一次线上cpu过高事故</a>
     </h1>
   
 
         
-        <a href="/2018/09/14/记一次线上cpu过高事故/" class="archive-article-date">
+        <a href="/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/" class="archive-article-date">
   	<time datetime="2018-09-14T09:36:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-14</time>
 </a>
         
@@ -444,25 +596,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>1.使用top查看CPU使用率高的pid<br>    <img src="/2018/09/14/记一次线上cpu过高事故/tomcat_top_pid.png" alt="gras"></p>
+        <h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>1.使用top查看CPU使用率高的pid<br>    <img src="%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/tomcat_top_pid.png" alt="gras"></p>
 <p>假如进程125697为cpu占用过高的进程</p>
-<p>2.使用top -Hp pid 查看进程下所有线程的运行情况<br>    <img src="/2018/09/14/记一次线上cpu过高事故/125697_top_hp.png" alt="gras"></p>
+<p>2.使用top -Hp pid 查看进程下所有线程的运行情况<br>    <img src="%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_top_hp.png" alt="gras"></p>
 <p>假如线程125902占用cpu过高</p>
-<p>3.使用printf ‘%x\n’ 线程ID 将线程ID转换成16进制</p>
-<pre><code>结果为 1ebce
-</code></pre><p>4.用jstack 进程id | grep 16进制线程id 找到线程信息<br>    <img src="/2018/09/14/记一次线上cpu过高事故/125697_jstack_pid.png" alt="gras"></p>
-<p>5.可根据更多的jstack信息，找到代码报错信息，定位问题原因</p>
-<hr>
-<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>1.使用jstat  -gcutil pid 查看gc情况<br>    <img src="/2018/09/14/记一次线上cpu过高事故/125697_jstat_gc.png" alt="gras"></p>
-<p>年轻代和老年代比例正常，没有full gc</p>
-<p>2.使用jmap -dump:live,file=dumpfile pid 导出dumpfile分析</p>
-<p>3.使用jhat dumpfile <br><br>执行后等待console 中输出start HTTP server on port 7000 即可使用浏览器访问 IP：7000</p>
-<p>由于我导出的dump文件太大，jhat有内存溢出的错误，使用jhat -J-Xmx4096m 指定内存也不行</p>
-<p>4.使用JProfiler分析dump文件 （dump后缀改成hprof才能被打开）<br>    <img src="/2018/09/14/记一次线上cpu过高事故/jprofiler_1.png" alt="gras"><br>    <center> 图1 </center></p>
-<p>   <img src="/2018/09/14/记一次线上cpu过高事故/jprofiler_2.png" alt="gras"> <center> 图2 </center></p>
-<p>由图1可以发现，DriverBg和LinkedList&amp;Node被实例化了很多次,<br>图2可以发现序列化的时候写入了大对象，检查代码发现有个地方业务上没有限制，导致了查询数据库时扫描了全库，全部放到了list中，并且将结果全部序列化之后放到了redis，导致redis的读写很慢！</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>  经过这次的事故，简单学习了jstat,jmap,jstack等内存分析命令，之后可以深入学习这些命令，在jvm调优中可以有更好的应用</p>
-
+        
+          <a class="article-more-a" href="/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/#more">more >></a>
+        
       
 
       
@@ -474,7 +614,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/14/记一次线上cpu过高事故/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/">展开全文 >></a>
         </p>
       
 
@@ -526,48 +666,31 @@
       
         <h2 id="1、实用的Bean工厂ApplicationContext"><a href="#1、实用的Bean工厂ApplicationContext" class="headerlink" title="1、实用的Bean工厂ApplicationContext"></a>1、实用的Bean工厂ApplicationContext</h2><pre><code>ApplicationContext的中文意思是“应用前后关系”，它继承自BeanFactory接口，
 除了包含BeanFactory的所有功能之外，在国际化支持、资源访问（如URL和文件）、
-事件传播等方面进行了良好的支持
-</code></pre><h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><pre><code>在ApplicationContext接口的众多实现类中，有3个是我们经常用到的（见表1-1），并且使用这3个实现类也基本能满足我们Java EE应用开发中的绝大部分需求。
+事件传播等方面进行了良好的支持</code></pre><h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><pre><code>在ApplicationContext接口的众多实现类中，有3个是我们经常用到的（见表1-1），并且使用这3个实现类也基本能满足我们Java EE应用开发中的绝大部分需求。
 
-表1-1 ApplicationContext接口的常用实现类介绍
-</code></pre><table>
+表1-1 ApplicationContext接口的常用实现类介绍</code></pre><table>
 <thead>
 <tr>
-<th style="text-align:left">类 名 称</th>
-<th style="text-align:left">功 能 描 述 </th>
+<th align="left">类 名 称</th>
+<th align="left">功 能 描 述</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:left">ClassPathXmlApplicationContext</td>
-<td style="text-align:left">从类路径ClassPath中寻找指定的XML配置文件，找到并装载完成ApplicationContext的实例化工作。例如：<br>//装载单个配置文件实例化ApplicationContext容器 <br>ApplicationContext cxt = new ClassPathXmlApplicationContext(“applicationContext.xml”); <br>//装载多个配置文件实例化ApplicationContext容器 <br>String[] configs = {“bean1.xml”,”bean2.xml”,”bean3.xml”}; <br>ApplicationContext cxt = new ClassPathXmlApplicationContext(configs);</td>
+<tbody><tr>
+<td align="left">ClassPathXmlApplicationContext</td>
+<td align="left">从类路径ClassPath中寻找指定的XML配置文件，找到并装载完成ApplicationContext的实例化工作。例如：<br>//装载单个配置文件实例化ApplicationContext容器 <br>ApplicationContext cxt = new ClassPathXmlApplicationContext(“applicationContext.xml”); <br>//装载多个配置文件实例化ApplicationContext容器 <br>String[] configs = {“bean1.xml”,”bean2.xml”,”bean3.xml”}; <br>ApplicationContext cxt = new ClassPathXmlApplicationContext(configs);</td>
 </tr>
 <tr>
-<td style="text-align:left">FileSystemXmlApplicationContext</td>
-<td style="text-align:left">从指定的文件系统路径中寻找指定的XML配置文件，找到并装载完成ApplicationContext的实例化工作。例如： <br>//装载单个配置文件实例化ApplicationContext容器 <br>ApplicationContext cxt = new FileSystemXMLApplicationContext(“beans.xml”); <br>//装载多个配置文件实例化ApplicationContext容器 <br>String[] configs = {“c:/beans1.xml”,”c:/beans2.xml”}; <br>ApplicationContext cxt = new FileSystemXmlApplicationContext(configs);</td>
+<td align="left">FileSystemXmlApplicationContext</td>
+<td align="left">从指定的文件系统路径中寻找指定的XML配置文件，找到并装载完成ApplicationContext的实例化工作。例如： <br>//装载单个配置文件实例化ApplicationContext容器 <br>ApplicationContext cxt = new FileSystemXMLApplicationContext(“beans.xml”); <br>//装载多个配置文件实例化ApplicationContext容器 <br>String[] configs = {“c:/beans1.xml”,”c:/beans2.xml”}; <br>ApplicationContext cxt = new FileSystemXmlApplicationContext(configs);</td>
 </tr>
 <tr>
-<td style="text-align:left">XmlWebApplicationContext</td>
-<td style="text-align:left">从Web应用中寻找指定的XML配置文件，找到并装载完成ApplicationContext的实例化工作。这是为Web工程量身定制的，使用WebApplicationContextUtils类的getRequiredWebApplicationContext方法可在JSP与Servlet中取得IoC容器的引用</td>
+<td align="left">XmlWebApplicationContext</td>
+<td align="left">从Web应用中寻找指定的XML配置文件，找到并装载完成ApplicationContext的实例化工作。这是为Web工程量身定制的，使用WebApplicationContextUtils类的getRequiredWebApplicationContext方法可在JSP与Servlet中取得IoC容器的引用</td>
 </tr>
-</tbody>
-</table>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ul>
-<li>ApplicationContext类图<br><img src="/2018/09/08/spring-context/ApplicationContext类图.png" alt="gras"></li>
-</ul>
-<hr>
-<ul>
-<li><p>分析：<br><br>  1.ClassPathXmlApplicationContext</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	public ClassPathXmlApplicationContext(</span><br><span class="line">	String[] configLocations, boolean refresh, @Nullable ApplicationContext parent) throws BeansException &#123;</span><br><span class="line"></span><br><span class="line">	super(parent);</span><br><span class="line">	setConfigLocations(configLocations);</span><br><span class="line">	if (refresh) &#123;</span><br><span class="line">		refresh();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<pre><code>* 首先调用setConfigLocations(configLocations)方法&lt;br&gt;
-setConfigLocations为AbstractRefreshableConfigApplicationContext中的方法，设置configLocations，将要解析的xml文件名进去
-
-* 重点在refresh()中，refresh()在AbstractApplicationContext类中，所有解析xml文件和装配bean的动作都发生在这里&lt;br&gt;
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">public void refresh() throws BeansException, IllegalStateException &#123;</span><br><span class="line">	synchronized (this.startupShutdownMonitor) &#123;</span><br><span class="line">		// Prepare this context for refreshing.</span><br><span class="line">		prepareRefresh();</span><br><span class="line"></span><br><span class="line">		// Tell the subclass to refresh the internal bean factory.</span><br><span class="line">		ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();</span><br><span class="line"></span><br><span class="line">		// Prepare the bean factory for use in this context.</span><br><span class="line">		prepareBeanFactory(beanFactory);</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			// Allows post-processing of the bean factory in context subclasses.</span><br><span class="line">			postProcessBeanFactory(beanFactory);</span><br><span class="line"></span><br><span class="line">			// Invoke factory processors registered as beans in the context.</span><br><span class="line">			invokeBeanFactoryPostProcessors(beanFactory);</span><br><span class="line"></span><br><span class="line">			// Register bean processors that intercept bean creation.</span><br><span class="line">			registerBeanPostProcessors(beanFactory);</span><br><span class="line"></span><br><span class="line">			// Initialize message source for this context.</span><br><span class="line">			initMessageSource();</span><br><span class="line"></span><br><span class="line">			// Initialize event multicaster for this context.</span><br><span class="line">			initApplicationEventMulticaster();</span><br><span class="line"></span><br><span class="line">			// Initialize other special beans in specific context subclasses.</span><br><span class="line">			onRefresh();</span><br><span class="line"></span><br><span class="line">			// Check for listener beans and register them.</span><br><span class="line">			registerListeners();</span><br><span class="line"></span><br><span class="line">			// Instantiate all remaining (non-lazy-init) singletons.</span><br><span class="line">			finishBeanFactoryInitialization(beanFactory);</span><br><span class="line"></span><br><span class="line">			// Last step: publish corresponding event.</span><br><span class="line">			finishRefresh();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		catch (BeansException ex) &#123;</span><br><span class="line">			if (logger.isWarnEnabled()) &#123;</span><br><span class="line">				logger.warn(&quot;Exception encountered during context initialization - &quot; +</span><br><span class="line">						&quot;cancelling refresh attempt: &quot; + ex);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			// Destroy already created singletons to avoid dangling resources.</span><br><span class="line">			destroyBeans();</span><br><span class="line"></span><br><span class="line">			// Reset &apos;active&apos; flag.</span><br><span class="line">			cancelRefresh(ex);</span><br><span class="line"></span><br><span class="line">			// Propagate exception to caller.</span><br><span class="line">			throw ex;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		finally &#123;</span><br><span class="line">			// Reset common introspection caches in Spring&apos;s core, since we</span><br><span class="line">			// might not ever need metadata for singleton beans anymore...</span><br><span class="line">			resetCommonCaches();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre>
+</tbody></table>
+        
+          <a class="article-more-a" href="/2018/09/08/spring-context/#more">more >></a>
+        
       
 
       
@@ -580,68 +703,6 @@ setConfigLocations为AbstractRefreshableConfigApplicationContext中的方法，�
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/09/08/spring-context/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-spring-ioc" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/08/spring-ioc/">spring-ioc</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/08/spring-ioc/" class="archive-article-date">
-  	<time datetime="2018-09-08T05:32:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/08/spring-ioc/">展开全文 >></a>
         </p>
       
 
@@ -693,12 +754,16 @@ setConfigLocations为AbstractRefreshableConfigApplicationContext中的方法，�
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
       
@@ -752,7 +817,7 @@ setConfigLocations为AbstractRefreshableConfigApplicationContext中的方法，�
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 sgvshy
+    		&copy; 2020 sgvshy
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -847,7 +912,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">aop 注解</a>
+                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ConcurrentHashMap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -859,7 +928,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
+                <a href="javascript:void(0)" class="js-tag color2">aop 注解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-- 高并发 -- CountDownLatch</a>
               </li>
             
             <div class="clearfix"></div>

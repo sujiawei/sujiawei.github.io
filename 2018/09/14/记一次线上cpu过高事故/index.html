@@ -8,24 +8,23 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>记一次线上cpu过高事故 | sgvshy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="方法11.使用top查看CPU使用率高的pid     假如进程125697为cpu占用过高的进程 2.使用top -Hp pid 查看进程下所有线程的运行情况     假如线程125902占用cpu过高 3.使用printf ‘%x\n’ 线程ID 将线程ID转换成16进制 结果为 1ebce 4.用jstack 进程id | grep 16进制线程id 找到线程信息     5.可根据更多的j">
+  <meta name="description" content="方法11.使用top查看CPU使用率高的pid     假如进程125697为cpu占用过高的进程 2.使用top -Hp pid 查看进程下所有线程的运行情况     假如线程125902占用cpu过高">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次线上cpu过高事故">
-<meta property="og:url" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/index.html">
 <meta property="og:site_name" content="sgvshy">
-<meta property="og:description" content="方法11.使用top查看CPU使用率高的pid     假如进程125697为cpu占用过高的进程 2.使用top -Hp pid 查看进程下所有线程的运行情况     假如线程125902占用cpu过高 3.使用printf ‘%x\n’ 线程ID 将线程ID转换成16进制 结果为 1ebce 4.用jstack 进程id | grep 16进制线程id 找到线程信息     5.可根据更多的j">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/tomcat_top_pid.png">
-<meta property="og:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/125697_top_hp.png">
-<meta property="og:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/125697_jstack_pid.png">
-<meta property="og:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/125697_jstat_gc.png">
-<meta property="og:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/jprofiler_1.png">
-<meta property="og:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/jprofiler_2.png">
-<meta property="og:updated_time" content="2018-09-18T07:45:47.000Z">
+<meta property="og:description" content="方法11.使用top查看CPU使用率高的pid     假如进程125697为cpu占用过高的进程 2.使用top -Hp pid 查看进程下所有线程的运行情况     假如线程125902占用cpu过高">
+<meta property="og:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/tomcat_top_pid.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_top_hp.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_jstack_pid.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_jstat_gc.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/jprofiler_1.png">
+<meta property="og:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/jprofiler_2.png">
+<meta property="article:published_time" content="2018-09-14T09:36:05.000Z">
+<meta property="article:modified_time" content="2019-07-24T13:54:34.000Z">
+<meta property="article:author" content="sgvshy">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一次线上cpu过高事故">
-<meta name="twitter:description" content="方法11.使用top查看CPU使用率高的pid     假如进程125697为cpu占用过高的进程 2.使用top -Hp pid 查看进程下所有线程的运行情况     假如线程125902占用cpu过高 3.使用printf ‘%x\n’ 线程ID 将线程ID转换成16进制 结果为 1ebce 4.用jstack 进程id | grep 16进制线程id 找到线程信息     5.可根据更多的j">
-<meta name="twitter:image" content="http://yoursite.com/2018/09/14/记一次线上cpu过高事故/tomcat_top_pid.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/tomcat_top_pid.png">
   
     <link rel="alternative" href="/atom.xml" title="sgvshy" type="application/atom+xml">
   
@@ -43,7 +42,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -67,6 +66,8 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/tags">随笔</a></li>
+	        
+				<li><a href="/java_class_every_day">每天一个JAVA类</a></li>
 	        
 			</ul>
 		</nav>
@@ -124,6 +125,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -141,12 +144,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags">随笔</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/java_class_every_day">每天一个JAVA类</a></li>
 		        
 				</ul>
 			</nav>
@@ -173,7 +178,7 @@
   
 
         
-        <a href="/2018/09/14/记一次线上cpu过高事故/" class="archive-article-date">
+        <a href="/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/" class="archive-article-date">
   	<time datetime="2018-09-14T09:36:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-14</time>
 </a>
         
@@ -181,22 +186,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>1.使用top查看CPU使用率高的pid<br>    <img src="/2018/09/14/记一次线上cpu过高事故/tomcat_top_pid.png" alt="gras"></p>
+        <h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>1.使用top查看CPU使用率高的pid<br>    <img src="%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/tomcat_top_pid.png" alt="gras"></p>
 <p>假如进程125697为cpu占用过高的进程</p>
-<p>2.使用top -Hp pid 查看进程下所有线程的运行情况<br>    <img src="/2018/09/14/记一次线上cpu过高事故/125697_top_hp.png" alt="gras"></p>
+<p>2.使用top -Hp pid 查看进程下所有线程的运行情况<br>    <img src="%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_top_hp.png" alt="gras"></p>
 <p>假如线程125902占用cpu过高</p>
+<a id="more"></a>
+
 <p>3.使用printf ‘%x\n’ 线程ID 将线程ID转换成16进制</p>
-<pre><code>结果为 1ebce
-</code></pre><p>4.用jstack 进程id | grep 16进制线程id 找到线程信息<br>    <img src="/2018/09/14/记一次线上cpu过高事故/125697_jstack_pid.png" alt="gras"></p>
+<pre><code>结果为 1ebce</code></pre><p>4.用jstack 进程id | grep 16进制线程id 找到线程信息<br>    <img src="%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_jstack_pid.png" alt="gras"></p>
 <p>5.可根据更多的jstack信息，找到代码报错信息，定位问题原因</p>
 <hr>
-<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>1.使用jstat  -gcutil pid 查看gc情况<br>    <img src="/2018/09/14/记一次线上cpu过高事故/125697_jstat_gc.png" alt="gras"></p>
+<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>1.使用jstat  -gcutil pid 查看gc情况<br>    <img src="%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_jstat_gc.png" alt="gras"></p>
 <p>年轻代和老年代比例正常，没有full gc</p>
 <p>2.使用jmap -dump:live,file=dumpfile pid 导出dumpfile分析</p>
 <p>3.使用jhat dumpfile <br><br>执行后等待console 中输出start HTTP server on port 7000 即可使用浏览器访问 IP：7000</p>
 <p>由于我导出的dump文件太大，jhat有内存溢出的错误，使用jhat -J-Xmx4096m 指定内存也不行</p>
-<p>4.使用JProfiler分析dump文件 （dump后缀改成hprof才能被打开）<br>    <img src="/2018/09/14/记一次线上cpu过高事故/jprofiler_1.png" alt="gras"><br>    <center> 图1 </center></p>
-<p>   <img src="/2018/09/14/记一次线上cpu过高事故/jprofiler_2.png" alt="gras"> <center> 图2 </center></p>
+<p>4.使用JProfiler分析dump文件 （dump后缀改成hprof才能被打开）<br>    <img src="%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/jprofiler_1.png" alt="gras"><br>    <center> 图1 </center></p>
+<p>   <img src="%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/jprofiler_2.png" alt="gras"> <center> 图2 </center></p>
 <p>由图1可以发现，DriverBg和LinkedList&amp;Node被实例化了很多次,<br>图2可以发现序列化的时候写入了大对象，检查代码发现有个地方业务上没有限制，导致了查询数据库时扫描了全库，全部放到了list中，并且将结果全部序列化之后放到了redis，导致redis的读写很慢！</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>  经过这次的事故，简单学习了jstat,jmap,jstack等内存分析命令，之后可以深入学习这些命令，在jvm调优中可以有更好的应用</p>
 
@@ -278,7 +284,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/14/记一次线上cpu过高事故/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -292,7 +298,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/09/20/Spring-Aop和自定义注解的简单应用/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/09/20/Spring-Aop%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -359,7 +365,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 sgvshy
+    		&copy; 2020 sgvshy
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -454,7 +460,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">aop 注解</a>
+                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ConcurrentHashMap</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -466,7 +476,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">HashMap</a>
+                <a href="javascript:void(0)" class="js-tag color2">aop 注解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-- 高并发 -- CountDownLatch</a>
               </li>
             
             <div class="clearfix"></div>
