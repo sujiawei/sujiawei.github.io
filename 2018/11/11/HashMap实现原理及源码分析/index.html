@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   
+  <meta name="baidu-site-verification" content="eAaTCQkksp" />
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="https://sujiawei.github.io">
   <title>Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析 | sgvshy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="转载   https:&#x2F;&#x2F;javadoop.com&#x2F;post&#x2F;hashmap    今天发一篇”水文”，可能很多读者都会表示不理解，不过我想把它作为并发序列文章中不可缺少的一块来介绍。本来以为花不了多少时间的，不过最终还是投入了挺多时间来完成这篇文章的。 网上关于 HashMap 和 ConcurrentHashMap 的文章确实不少，不过缺斤少两的文章比较多，所以才想自己也写一篇，把细节说清楚">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java7&#x2F;8 中的 HashMap 和 ConcurrentHashMap 全解析">
-<meta property="og:url" content="http://yoursite.com/2018/11/11/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.html">
+<meta property="og:url" content="https://sujiawei.github.io/2018/11/11/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="sgvshy">
 <meta property="og:description" content="转载   https:&#x2F;&#x2F;javadoop.com&#x2F;post&#x2F;hashmap    今天发一篇”水文”，可能很多读者都会表示不理解，不过我想把它作为并发序列文章中不可缺少的一块来介绍。本来以为花不了多少时间的，不过最终还是投入了挺多时间来完成这篇文章的。 网上关于 HashMap 和 ConcurrentHashMap 的文章确实不少，不过缺斤少两的文章比较多，所以才想自己也写一篇，把细节说清楚">
-<meta property="og:image" content="http://yoursite.com/2018/11/11/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/1.png">
+<meta property="og:image" content="https://sujiawei.github.io/2018/11/11/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/1.png">
 <meta property="og:image" content="https://javadoop.com/blogimages/map/3.png">
 <meta property="og:image" content="https://javadoop.com/blogimages/map/2.png">
 <meta property="og:image" content="https://javadoop.com/blogimages/map/4.png">
@@ -23,7 +24,7 @@
 <meta property="article:author" content="sgvshy">
 <meta property="article:tag" content="HashMap">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2018/11/11/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/1.png">
+<meta name="twitter:image" content="https://sujiawei.github.io/2018/11/11/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/1.png">
   
     <link rel="alternative" href="/atom.xml" title="sgvshy" type="application/atom+xml">
   
@@ -519,7 +520,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/11/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sujiawei.github.io/2018/11/11/HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" alt="微信分享二维码">
     </div>
 </div>
 

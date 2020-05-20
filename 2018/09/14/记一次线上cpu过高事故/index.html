@@ -3,28 +3,29 @@
 <head>
   <meta charset="utf-8">
   
+  <meta name="baidu-site-verification" content="eAaTCQkksp" />
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="https://sujiawei.github.io">
   <title>记一次线上cpu过高事故 | sgvshy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="方法11.使用top查看CPU使用率高的pid     假如进程125697为cpu占用过高的进程 2.使用top -Hp pid 查看进程下所有线程的运行情况     假如线程125902占用cpu过高">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次线上cpu过高事故">
-<meta property="og:url" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/index.html">
+<meta property="og:url" content="https://sujiawei.github.io/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/index.html">
 <meta property="og:site_name" content="sgvshy">
 <meta property="og:description" content="方法11.使用top查看CPU使用率高的pid     假如进程125697为cpu占用过高的进程 2.使用top -Hp pid 查看进程下所有线程的运行情况     假如线程125902占用cpu过高">
-<meta property="og:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/tomcat_top_pid.png">
-<meta property="og:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_top_hp.png">
-<meta property="og:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_jstack_pid.png">
-<meta property="og:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_jstat_gc.png">
-<meta property="og:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/jprofiler_1.png">
-<meta property="og:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/jprofiler_2.png">
+<meta property="og:image" content="https://sujiawei.github.io/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/tomcat_top_pid.png">
+<meta property="og:image" content="https://sujiawei.github.io/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_top_hp.png">
+<meta property="og:image" content="https://sujiawei.github.io/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_jstack_pid.png">
+<meta property="og:image" content="https://sujiawei.github.io/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/125697_jstat_gc.png">
+<meta property="og:image" content="https://sujiawei.github.io/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/jprofiler_1.png">
+<meta property="og:image" content="https://sujiawei.github.io/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/jprofiler_2.png">
 <meta property="article:published_time" content="2018-09-14T09:36:05.000Z">
 <meta property="article:modified_time" content="2020-05-20T13:07:54.386Z">
 <meta property="article:author" content="sgvshy">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/tomcat_top_pid.png">
+<meta name="twitter:image" content="https://sujiawei.github.io/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/tomcat_top_pid.png">
   
     <link rel="alternative" href="/atom.xml" title="sgvshy" type="application/atom+xml">
   
@@ -306,7 +307,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sujiawei.github.io/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/" alt="微信分享二维码">
     </div>
 </div>
 
