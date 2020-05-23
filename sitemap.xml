@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sujiawei.github.io/2020/05/14/Spring-retry%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%8E%9F%E7%90%86/</loc>
+    
+    <lastmod>2020-05-21T13:52:34.805Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://sujiawei.github.io/2018/09/14/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BA%BF%E4%B8%8Acpu%E8%BF%87%E9%AB%98%E4%BA%8B%E6%95%85/</loc>
     
     <lastmod>2020-05-20T13:07:54.386Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://sujiawei.github.io/2019/05/10/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8BCountDownLatch/</loc>
     
     <lastmod>2020-05-20T13:04:06.138Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://sujiawei.github.io/2020/05/14/Spring-retry%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%8E%9F%E7%90%86/</loc>
-    
-    <lastmod>2020-05-20T13:04:02.201Z</lastmod>
     
   </url>
   
