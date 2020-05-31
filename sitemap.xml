@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sujiawei.github.io/2020/05/24/Spring%E7%86%94%E6%96%AD-CircuitBreaker/</loc>
+    
+    <lastmod>2020-05-31T13:48:36.031Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://sujiawei.github.io/2020/05/14/Spring-retry%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%8E%9F%E7%90%86/</loc>
     
-    <lastmod>2020-05-21T13:52:34.805Z</lastmod>
+    <lastmod>2020-05-28T13:58:42.428Z</lastmod>
     
   </url>
   

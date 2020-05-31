@@ -7,14 +7,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sujiawei.github.io">
-  <title>Tag: Spring | sgvshy</title>
+  <title>Spring熔断@CircuitBreaker | sgvshy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="sgvshy">
-<meta property="og:url" content="https://sujiawei.github.io/tags/Spring/index.html">
+  <meta name="description" content="@CircuitBreaker 是Spring Retry 包中提供的熔断相关的功能。它是在 @Retryable 的基础上实现的。所以大家在看这篇文章之前可以先回顾下之前我们分析的 spring Retry 中关于 @Retryable 的相关功能：  Spring Retry的使用及原理  对 @Retryable 的原理了解之后，我们一起来学习下 @CircuitBreaker。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring熔断@CircuitBreaker">
+<meta property="og:url" content="https://sujiawei.github.io/2020/05/24/Spring%E7%86%94%E6%96%AD-CircuitBreaker/index.html">
 <meta property="og:site_name" content="sgvshy">
+<meta property="og:description" content="@CircuitBreaker 是Spring Retry 包中提供的熔断相关的功能。它是在 @Retryable 的基础上实现的。所以大家在看这篇文章之前可以先回顾下之前我们分析的 spring Retry 中关于 @Retryable 的相关功能：  Spring Retry的使用及原理  对 @Retryable 的原理了解之后，我们一起来学习下 @CircuitBreaker。">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gf3ty5oor9j30r80bgdh4.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gf3trj0q88j30zh0u0dnl.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf8h6pzocqj31220g2whu.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfbxa93jbtj30zb0u04b0.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfbxthfde4j30vc0ge411.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfbyn23prrj30y40u0482.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ges8f1ay16j30760760t7.jpg">
+<meta property="article:published_time" content="2020-05-24T09:37:41.000Z">
+<meta property="article:modified_time" content="2020-05-31T13:48:36.031Z">
 <meta property="article:author" content="sgvshy">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="Spring retryable">
+<meta property="article:tag" content="CircuitBreaker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gf3ty5oor9j30r80bgdh4.jpg">
   
     <link rel="alternative" href="/atom.xml" title="sgvshy" type="application/atom+xml">
   
@@ -150,38 +165,117 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Spring熔断-CircuitBreaker" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Spring熔断@CircuitBreaker
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2020/05/24/Spring%E7%86%94%E6%96%AD-CircuitBreaker/" class="archive-article-date">
   	<time datetime="2020-05-24T09:37:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
 </a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/24/Spring%E7%86%94%E6%96%AD-CircuitBreaker/">Spring熔断@CircuitBreaker</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
           
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">786字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@CircuitBreaker 是Spring Retry 包中提供的熔断相关的功能。它是在 @Retryable 的基础上实现的。所以大家在看这篇文章之前可以先回顾下之前我们分析的 spring Retry 中关于 @Retryable 的相关功能：</p>
+<blockquote>
+<p><a href="https://sujiawei.github.io/2020/05/14/Spring-retry的使用及原理/#more">Spring Retry的使用及原理</a></p>
+</blockquote>
+<p>对 @Retryable 的原理了解之后，我们一起来学习下 @CircuitBreaker。</p>
+<a id="more"></a>
+
+<h2 id="CircuitBreaker-用法"><a href="#CircuitBreaker-用法" class="headerlink" title="@CircuitBreaker 用法"></a>@CircuitBreaker 用法</h2><p>首先，我们看下 @CircuitBreaker 的简单用法</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gf3ty5oor9j30r80bgdh4.jpg" alt=""></p>
+<p>这样，我们就可以实现一个简单的熔断器了，重试 3 次之后则启动熔断功能。@CircuitBreaker 还有很多复杂的用法提供给我们使用，我们一起来看下吧！</p>
+<h2 id="CircuitBreaker-注解"><a href="#CircuitBreaker-注解" class="headerlink" title="@CircuitBreaker 注解"></a>@CircuitBreaker 注解</h2><p>接下来，我们看下 @CircuitBreaker 注解的相关方法</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gf3trj0q88j30zh0u0dnl.jpg" alt=""></p>
+<p>图中 ① 是一个 @Retryable(stateful = true) 注解，它表示 @CircuitBreaker 注解继承了 @Retryable 注解，并且 stateful 方法是 true，说明 @CircuitBreaker 是一个有状态的 @Retryable。</p>
+<p>所以，我们也可以看到 图中 ② 标识的方法是 @Retryable 的，这也就是刚刚我提到 @CircuitBreaker 是在 @Retryable 基础上的实现的原因。当然在原理分析中我们也会提到。</p>
+<p>然后图中 ③ 和 ④ 就是 @CircuitBreaker 中特有的方法了，大家可以通过注释了解这些方法的作用。</p>
+<h2 id="CircuitBreaker-原理"><a href="#CircuitBreaker-原理" class="headerlink" title="@CircuitBreaker 原理"></a>@CircuitBreaker 原理</h2><p>@Retryable 的文章中我们有讲到，处理 @Retryable 注解的代理时，提到过下面的代码</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf8h6pzocqj31220g2whu.jpg" alt=""></p>
+<p>在 @Retryable 的文章中，我们 分析了 ③ 处的代码，由于 @CircuitBreaker 是有状态的重试，所以我们要看的是② 处的 getStatefulInterceptor 相关处理。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfbxa93jbtj30zb0u04b0.jpg" alt=""></p>
+<p>我们主要看 circuit 不为空的情况，可以看到 circuit 不为空的时候最后使用 StatefulRetryOperationsInterceptor 来处理 @CircuitBreaker，而最终处理熔断或者重试都会执行 RetryTemplate 中的 doExecute 方法，这个方法我们关于 @Retryable 的文章中已经分析过了，判断是否可以重试主要依赖相关 RetryPolicy 的 canRetry 及其他相关方法，那么接下来我们就看看 处理 @CircuitBreaker 的重试策略 CircuitBreakerRetryPolicy 吧。</p>
+<h3 id="CircuitBreakerRetryPolicy"><a href="#CircuitBreakerRetryPolicy" class="headerlink" title="CircuitBreakerRetryPolicy"></a>CircuitBreakerRetryPolicy</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfbxthfde4j30vc0ge411.jpg" alt=""></p>
+<p>从上面的代码，可以看到，canRetry 的核心其实是 circuit.isOpen()，判断熔断开关是否开启，如果是关闭状态的话，熔断策略其实就退化成了我们配置的 Retry 的相关策略。那我们就继续看下熔断开关的相关逻辑吧。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfbyn23prrj30y40u0482.jpg" alt=""></p>
+<p>从代码可以看到</p>
+<ul>
+<li>当重试失败，且在熔断器打开时间窗口[0,openWindow) 内，立即熔断；</li>
+<li>当重试失败，且在指定超时时间后(&gt;timeout)，熔断器电路重新闭合；</li>
+<li>在熔断器半打开状态[openWindow, timeout] 时，只要重试成功则重置上下文，断路器闭合。</li>
+</ul>
+<p>到这里，@CircuitBreaker 的相关代码我们就分析完了，@CircuitBreaker 提供的功能已比较强大，而且我们也可以通过 Spring Retry 包中提供的相关接口做自定义的实现，应该可以满足我们再业务场景中的大部分场景了。冠以更加强大的熔断工具 hystrix，我们之后再进行分析。希望这边文章可以帮助到大家。</p>
+<hr>
+<p>欢迎关注我的公众号“shy先生”，很高兴能与大家一起成长。</p>
+<center>
+    <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ges8f1ay16j30760760t7.jpg" style="width: 100px;">
+</center>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -201,19 +295,142 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sujiawei.github.io/2020/05/24/Spring%E7%86%94%E6%96%AD-CircuitBreaker/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/05/14/Spring-retry%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%8E%9F%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring-retry的使用及原理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CircuitBreaker-用法"><span class="toc-number">1.</span> <span class="toc-text">@CircuitBreaker 用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CircuitBreaker-注解"><span class="toc-number">2.</span> <span class="toc-text">@CircuitBreaker 注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CircuitBreaker-原理"><span class="toc-number">3.</span> <span class="toc-text">@CircuitBreaker 原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CircuitBreakerRetryPolicy"><span class="toc-number">3.1.</span> <span class="toc-text">CircuitBreakerRetryPolicy</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+
+  
+
+  
+       <div id="gitalk-container"></div>
+       <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+var gitalk = new Gitalk({
+  clientID: 'd1b977a9e1214b0dd42f',
+  clientSecret: 'ec8240429edbc17bb9a5ad9c4c3d489d57b86741',
+  repo: 'sujiawei.github.io',
+  owner: 'sujiawei',
+  admin: ['sujiawei'],
+  id: md5(window.location.pathname),
+  distractionFreeMode: true
+})
+
+gitalk.render('gitalk-container')
+</script>
+
+  
+
+  
 
 
           </div>
@@ -248,9 +465,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
